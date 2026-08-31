@@ -426,6 +426,41 @@ body::after{
 }
 html{scroll-behavior:smooth}
 
+
+/*---Added--*/
+.team { padding: 110px 0 120px; background: #222823; color: white; }
+.team-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 7vw; padding-top: 72px; }
+.lead-profile { display: grid; grid-template-columns: 118px 1fr; gap: 34px; }
+.lead-profile img { width: 118px; height: 118px; object-fit: cover; filter: grayscale(1); background: rgba(255,255,255,.1); }
+.lead-profile span, .collaborator-cards span { display: block; margin: 2px 0 16px; color: var(--acid); font-size: 9px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+.lead-profile h2 { margin: 0 0 21px; font-size: clamp(38px, 4.8vw, 68px); letter-spacing: -.06em; }
+.lead-profile p { max-width: 610px; margin: 0 0 26px; color: rgba(255,255,255,.63); font-size: 16px; line-height: 1.55; }
+.lead-profile a { display: inline-block; padding-bottom: 5px; border-bottom: 1px solid rgba(255,255,255,.6); font-size: 12px; font-weight: 800; }
+.collaborator-cards { border-top: 1px solid rgba(255,255,255,.18); }
+.collaborator-cards article { padding: 26px 0; border-bottom: 1px solid rgba(255,255,255,.18); }
+.collaborator-cards h3 { margin: 0 0 9px; font-size: 21px; letter-spacing: -.03em; }
+.collaborator-cards p { margin: 0; color: rgba(255,255,255,.52); font-size: 13px; line-height: 1.45; }
+
+.publications { padding: 120px 0; }
+.publications-heading { display: flex; justify-content: space-between; align-items: end; gap: 50px; padding: 72px 0 88px; }
+.publications-heading > div { display: flex; align-items: end; gap: 16px; }
+.publications-heading strong { font-size: 74px; line-height: .8; letter-spacing: -.07em; }
+.publications-heading p { margin: 0; color: var(--muted); font-size: 11px; font-weight: 700; line-height: 1.4; text-transform: uppercase; letter-spacing: .08em; }
+.publication-list { border-top: 2px solid var(--ink); }
+.publication-row { display: grid; grid-template-columns: 130px 1fr 40px; gap: 38px; align-items: center; padding: 30px 10px 30px 0; border-bottom: 1px solid rgba(16,20,17,.24); transition: background .2s, padding .2s; }
+.publication-row:hover { background: rgba(255,255,255,.5); padding-left: 16px; }
+.pub-index { display: flex; justify-content: space-between; align-items: center; }
+.pub-index span { color: var(--red); font-size: 10px; font-weight: 800; letter-spacing: .12em; }
+.pub-index b { font-size: 17px; }
+.pub-tags { display: flex; gap: 7px; margin-bottom: 13px; }
+.pub-tags span { padding: 5px 7px; background: #dedbd3; font-size: 8px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.pub-tags span:first-child { background: var(--ink); color: white; }
+.pub-main h3 { max-width: 920px; margin: 0 0 10px; font-size: clamp(20px, 2.1vw, 29px); line-height: 1.14; letter-spacing: -.04em; }
+.pub-main p { margin: 0 0 9px; color: #565c55; font-size: 12px; line-height: 1.4; }
+.pub-main small { color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .035em; }
+.pub-arrow { justify-self: end; font-size: 24px; transition: transform .2s; }
+.publication-row:hover .pub-arrow { transform: translate(3px, -3px); }
+.bibliography-note { max-width: 790px; margin: 36px 0 0 168px; color: var(--muted); font-size: 12px; line-height: 1.55; }
 /* ---------- reveal ---------- */
 .rise{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
 .rise.in{opacity:1;transform:none}
@@ -1047,12 +1082,235 @@ html{scroll-behavior:smooth}
   </section>
 
   <!-- ============ PUBLICATIONS ============ -->
+
+<section class="publications section-shell" id="publications">
+<div class="section-kicker">
+<span>05</span> Core publications</div>
+<div class="publications-heading">
+<h2>Building the evidence,<br/>layer by layer.</h2>
+<div>
+<strong>13</strong>
+<p>liver-related records<br/>through August 2026</p>
+</div>
+</div>
+<div class="publication-list">
+<a class="publication-row" href="https://arxiv.org/abs/2607.17810" target="_blank" rel="noreferrer">
+<div class="pub-index">
+<span>01</span>
+<b>2026</b>
+</div>
+<div class="pub-main">
+<div class="pub-tags">
+<span>Preprint</span>
+<span>Registration</span>
+</div>
+<h3>Vis2Reg: Visibility-Aware Landmark-Free Geometric 3D–2D Registration for Liver Laparoscopy</h3>
+<p>J. Feng, X. Zhang, S. Farid &amp; S. Ali</p>
+<small>arXiv:2607.17810· Accepted at MICCAI 2026</small>
+</div>
+<span class="pub-arrow" aria-hidden="true">↗</span>
+</a>
+<a class="publication-row" href="https://doi.org/10.1007/s11548-026-03600-8" target="_blank" rel="noreferrer">
+<div class="pub-index">
+<span>02</span>
+<b>2026</b>
+</div>
+<div class="pub-main">
+<div class="pub-tags">
+<span>Journal</span>
+<span>3D anatomy</span>
+</div>
+<h3>GeoTranMesh: A Geometry-Guided Multi-Branch Mesh Transformer for 3D Liver Segmentation</h3>
+<p>J. Feng, X. Zhang, S. Farid &amp; S. Ali</p>
+<small>International Journal of Computer Assisted Radiology and Surgery · 21(5)</small>
+</div>
+<span class="pub-arrow" aria-hidden="true">↗</span>
+</a>
+<a class="publication-row" href="https://doi.org/10.1007/s11548-025-03516-9" target="_blank" rel="noreferrer">
+<div class="pub-index">
+<span>03</span>
+<b>2026</b>
+</div>
+<div class="pub-main">
+<div class="pub-tags">
+<span>Journal</span>
+<span>Landmarks</span>
+</div>
+<h3>Liver Mask-Guided SAM-Enhanced Dual-Decoder Network for Landmark Segmentation in AR-Guided Surgery</h3>
+<p>X. Zhang, S. Ali, Y. Kang, J. Zhu, M. Han, L. Wang, X. Wang &amp; L. Zhang</p>
+<small>International Journal of Computer Assisted Radiology and Surgery · 21(1)</small>
+</div>
+<span class="pub-arrow" aria-hidden="true">↗</span>
+</a>
+<a class="publication-row" href="https://doi.org/10.1016/j.media.2025.103825" target="_blank" rel="noreferrer">
+<div class="pub-index">
+<span>04</span>
+<b>2026</b>
+</div>
+<div class="pub-main">
+<div class="pub-tags">
+<span>Journal</span>
+<span>Landmarks</span>
+</div>
+<h3>Nested Resolution Mesh-Graph CNN for Automated Extraction of Liver Surface Anatomical Landmarks</h3>
+<p>X. Zhang, J. Feng, P. Liu, M. Han, Y. Kang, J. Zhu, L. Wang, X. Wang, S. Ali &amp; L. Zhang</p>
+<small>Medical Image Analysis · 107(B):103825</small>
+</div>
+<span class="pub-arrow" aria-hidden="true">↗</span>
+</a>
+<a class="publication-row" href="https://doi.org/10.1177/15533506251415440" target="_blank" rel="noreferrer">
+<div class="pub-index">
+<span>05</span>
+<b>2026</b>
+</div>
+<div class="pub-main">
+<div class="pub-tags">
+<span>Review</span>
+<span>Clinical context</span>
+</div>
+<h3>General Surgery 4.0 — A Systematic Review of Extended Reality Interventions in General Surgery</h3>
+<p>M. R. Kowal, T. Williams, A. Dosis, S. Pathak, S. Farid, D. Stocken, P. Lodge, S. Ali, D. Tolan &amp; D. Jayne</p>
+<small>Surgical Innovation · online ahead of print</small>
+</div>
+<span class="pub-arrow" aria-hidden="true">↗</span>
+</a>
+<a class="publication-row" href="https://doi.org/10.1049/htl2.70032" target="_blank" rel="noreferrer">
+<div class="pub-index">
+<span>06</span>
+<b>2025</b>
+</div>
+<div class="pub-main">
+<div class="pub-tags">
+<span>Journal</span>
+<span>View synthesis</span>
+</div>
+<h3>Point-Guided Latent Diffusion Model for Novel View Synthesis in Laparoscopic Liver Surgery</h3>
+<p>W. Tang, T. Chen, Y. Espinel, S. Farid, E. Buc, A. Bartoli &amp; S. Ali</p>
+<small>Healthcare Technology Letters · 12(1):e70032</small>
+</div>
+<span class="pub-arrow" aria-hidden="true">↗</span>
+</a>
+<a class="publication-row" href="https://eprints.whiterose.ac.uk/id/eprint/231619/" target="_blank" rel="noreferrer">
+<div class="pub-index">
+<span>07</span>
+<b>2025</b>
+</div>
+<div class="pub-main">
+<div class="pub-tags">
+<span>Abstract</span>
+<span>Registration</span>
+</div>
+<h3>Preoperative to Intraoperative Deformed Liver Volumes Registration</h3>
+<p>T. Chen, J. Borgars, A. N. M. Shahir, S. Farid &amp; S. Ali</p>
+<small>MIUA 2025 · conference abstract · not peer reviewed</small>
+</div>
+<span class="pub-arrow" aria-hidden="true">↗</span>
+</a>
+<a class="publication-row" href="https://doi.org/10.1007/978-3-031-98694-9_15" target="_blank" rel="noreferrer">
+<div class="pub-index">
+<span>08</span>
+<b>2025</b>
+</div>
+<div class="pub-main">
+<div class="pub-tags">
+<span>Conference</span>
+<span>Landmarks</span>
+</div>
+<h3>Intraoperative Segmentation Through Deep Learning and Mask Post-Processing in Laparoscopic Liver Surgery</h3>
+<p>J. Borgars, J. Raja, A. Ramakrishnan, A. K. Abbas, A. Gallagher, A. N. M. Shahir, T. Vraimakis &amp; S. Ali</p>
+<small>MIUA 2025 · LNCS 15918· pp. 204–218</small>
+</div>
+<span class="pub-arrow" aria-hidden="true">↗</span>
+</a>
+<a class="publication-row" href="https://doi.org/10.1007/978-3-031-98691-8_16" target="_blank" rel="noreferrer">
+<div class="pub-index">
+<span>09</span>
+<b>2025</b>
+</div>
+<div class="pub-main">
+<div class="pub-tags">
+<span>Conference</span>
+<span>3D anatomy</span>
+</div>
+<h3>Midline-Constrained Loss in the Anatomical Landmark Segmentation of 3D Liver Models</h3>
+<p>A. K. Abbas, A. Gallagher, T. Vraimakis, J. Borgars, A. N. M. Shahir, J. Raja, A. Ramakrishnan &amp; S. Ali</p>
+<small>MIUA 2025 · LNCS 15917 · pp. 216–229</small>
+</div>
+<span class="pub-arrow" aria-hidden="true">↗</span>
+</a>
+<a class="publication-row" href="https://doi.org/10.1007/s11548-025-03358-5" target="_blank" rel="noreferrer">
+<div class="pub-index">
+<span>10</span>
+<b>2025</b>
+</div>
+<div class="pub-main">
+<div class="pub-tags">
+<span>Journal</span>
+<span>3D anatomy</span>
+</div>
+<h3>Two-Stream MeshCNN for Key Anatomical Segmentation on the Liver Surface</h3>
+<p>X. Zhang, S. Ali, M. Han, Y. Kang, X. Wang &amp; L. Zhang</p>
+<small>International Journal of Computer Assisted Radiology and Surgery · 20(7)</small>
+</div>
+<span class="pub-arrow" aria-hidden="true">↗</span>
+</a>
+<a class="publication-row" href="https://doi.org/10.1016/j.media.2024.103371" target="_blank" rel="noreferrer">
+<div class="pub-index">
+<span>11</span>
+<b>2025</b>
+</div>
+<div class="pub-main">
+<div class="pub-tags">
+<span>Journal</span>
+<span>AR benchmark</span>
+</div>
+<h3>An Objective Comparison of Methods for Augmented Reality in Laparoscopic Liver Resection from the MICCAI2022 Challenge</h3>
+<p>S. Ali, Y. Espinel, Y. Jin et al.</p>
+<small>Medical Image Analysis · 99:103371</small>
+</div>
+<span class="pub-arrow" aria-hidden="true">↗</span>
+</a>
+<a class="publication-row" href="https://doi.org/10.1016/j.compbiomed.2024.109202" target="_blank" rel="noreferrer">
+<div class="pub-index">
+<span>12</span>
+<b>2024</b>
+</div>
+<div class="pub-main">
+<div class="pub-tags">
+<span>Journal</span>
+<span>Surgical planning</span>
+</div>
+<h3>Robust and Smooth Couinaud Segmentation via Anatomical Structure-Guided Point-Voxel Network</h3>
+<p>X. Zhang, S. Ali, T. Liu, X. Zhao, Z. Cui, M. Han, S. Ma, J. Zhu, Y. Kang, L. Wang, X. Wang &amp; L. Zhang</p>
+<small>Computers in Biology and Medicine · 182:109202 · extended journal version</small>
+</div>
+<span class="pub-arrow" aria-hidden="true">↗</span>
+</a>
+<a class="publication-row" href="https://doi.org/10.1007/978-3-031-43898-1_45" target="_blank" rel="noreferrer">
+<div class="pub-index">
+<span>13</span>
+<b>2023</b>
+</div>
+<div class="pub-main">
+<div class="pub-tags">
+<span>Conference</span>
+<span>Surgical planning</span>
+</div>
+<h3>Anatomical-Aware Point-Voxel Network for Couinaud Segmentation in Liver CT</h3>
+<p>X. Zhang, Y. Liu, S. Ali, X. Zhao, M. Sun, M. Han, T. Liu, P. Zhai, Z. Cui, P. Zhang, X. Wang &amp; L. Zhang</p>
+<small>MICCAI 2023 · LNCS 14222 · conference precursor</small>
+</div>
+<span class="pub-arrow" aria-hidden="true">↗</span>
+</a>
+</div>
+<p class="bibliography-note">Journal and conference versions are deduplicated. The 2025 MIUA abstract is explicitly labelled non-peer-reviewed; Vis2Reg is listed as a preprint. The 2023 Couinaud paper and its extended 2024 journal version are retained as distinct records.</p>
+</section>
   <!--
     Each entry below is a template. Fill in the real title, author list, venue and
     year from the paper itself before publishing — do not leave placeholder text live.
     Duplicate a list item to add another paper.
   -->
-  <section id="publications" class="rule-top">
+  <!-- <section id="publications" class="rule-top">
     <div class="wrap">
       <div class="two-col">
         <div class="col-label">
@@ -1085,10 +1343,57 @@ html{scroll-behavior:smooth}
         </li>
       </ul>
     </div>
-  </section>
+  </section> -->
 
   <!-- ============ TEAM / DETAILS ============ -->
-  <section id="team" class="rule-top">
+<section class="team", section id="team">
+<div class="section-shell">
+<div class="section-kicker light">
+<span></span> Project team</div>
+<div class="team-grid">
+<article class="lead-profile">
+<img src="https://eps.leeds.ac.uk/images/resized/100x100-0-0-1-80-14012025JSP_UL_0861__2__4.jpg" alt="Dr Sharib Ali"/>
+<div>
+<span>Primary investigator</span>
+<h2>Dr Sharib Ali</h2>
+<p>Associate Professor and founder of the AI in Medicine and Surgery group at the University of Leeds, working across medical imaging, computational surgery, 3D reconstruction, segmentation and fusion.</p>
+<a href="https://eps.leeds.ac.uk/computing/staff/11465/dr-sharib-ali" target="_blank" rel="noreferrer">Leeds profile <span aria-hidden="true">↗</span>
+</a>
+</div>
+</article>
+<div class="collaborator-cards">
+<article>
+<span>Co-investigator</span>
+<h3>Shahid Farid</h3>
+<p>HPB and transplant surgeon, St James’s University Hospital.</p>
+</article>
+<article>
+<span>Researchers</span>
+<h3>Dr Gerardo Loza</h3>
+<p>Computational scientist, Tracking and Registration, University of Leeds.</p>
+</article>
+<article>
+<span>Partner</span>
+<h3>Leeds Teaching Hospitals NHS Trust</h3>
+<p>Clinical collaboration connecting research with liver surgery practice.</p>
+</article>
+<article>
+<span>Partner</span>
+<h3>DePuy Synthes (Johnson & Johnson MedTech)</h3>
+<p>Industry partner for experimental collaborations.</p>
+</article>
+<article>
+<span>Funder</span>
+<h3>EPSRC</h3>
+<p>Engineering and Physical Sciences Research Council.</p>
+</article>
+</div>
+</div>
+</div>
+</section>
+
+   
+  <!-- <section id="team" class="rule-top">
     <div class="wrap">
       <div class="two-col">
         <div class="col-label">
@@ -1098,7 +1403,10 @@ html{scroll-behavior:smooth}
         <div class="tbc">
           <dl>
             <dt>Principal investigator</dt>
-            <dd>Dr Sharib Ali, School of Computer Science, University of Leeds. Profile: <a href="https://eps.leeds.ac.uk/dir-record/staff/4756/sharib-ali">Link</a></dd>
+            <dd><img src="https://eps.leeds.ac.uk/images/resized/100x100-0-0-1-80-14012025JSP_UL_0861__2__4.jpg" alt="Dr Sharib Ali"/>Dr Sharib Ali, School of Computer Science, University of Leeds. Profile: <a href="https://eps.leeds.ac.uk/dir-record/staff/4756/sharib-ali">Link</a></dd>
+            <h2>Dr Sharib Ali</h2>
+            <p>Associate Professor and founder of the AI in Medicine and Surgery group at the University of Leeds, working across medical imaging, computational surgery, 3D reconstruction, segmentation and fusion.</p>
+            
             <dt>Co-investigators</dt>
             <dd>Shahid Farid, Consultant HPB Surgeon, Leeds Teaching Hospital NHS Trust</dd>
             <dt>Researchers</dt>
@@ -1113,11 +1421,11 @@ html{scroll-behavior:smooth}
             <dd>DePuy Synthes (Johnson & Johnson MedTech)</dd>
             <!-- <dt>Publications</dt>
             <dd>Add outputs and links</dd> -->
-          </dl>
+          <!-- </dl>
         </div>
       </div>
     </div>
-  </section>
+  </section> --> 
 
   <!-- ============ CONTACT ============ -->
   <section id="contact" class="contact">
