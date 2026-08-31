@@ -7,11 +7,11 @@
 <meta name="description" content="HARLI is a research project at the University of Leeds developing a real-time augmented reality system that overlays liver segments, vessels, tumours and optimal resection margins from pre-operative scans onto the laparoscopic scene.">
 
 <!-- Replace USERNAME and REPO once the site is published -->
-<link rel="canonical" href="https://USERNAME.github.io/REPO/">
+<link rel="canonical" href="https://aimsgroup-Leeds.github.io/HARLI/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="HARLI — Real-time augmented reality in laparoscopic liver resection">
 <meta property="og:description" content="Showing surgeons the liver segments, vessels, tumours and resection margins hidden beneath the surface of the organ.">
-<meta property="og:url" content="https://USERNAME.github.io/REPO/">
+<meta property="og:url" content="https://aimsgroup-Leeds.github.io/HARLI/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#17403B">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2317403B'/><circle cx='16' cy='16' r='8' fill='none' stroke='%233FD3BE' stroke-width='2.4'/><circle cx='16' cy='16' r='2.6' fill='%238A2E2B'/></svg>">
@@ -26,15 +26,15 @@
    subject already owns. Hepatic oxblood is the single accent.
    ============================================================ */
 :root{
-  --ink:        #1e4b4c;
+  --ink:        #1e374c;
   --drape:      #17403B;
   --drape-lift: #1e5843;
   --paper:      #fdfffc;
   --paper-warm: #fafff9;
-  --rule:       #C3CFC7;
+  --rule:       #ffffff;
   --oxblood:    #8A2E2B;
   --overlay:    #3FD3BE;   /* AR render tint, used only inside the viewport */
-  --amber:      #E0A33C;
+  --amber:      #3c88e0;
 
   --f-display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
   --f-body:    'Newsreader', Georgia, 'Times New Roman', serif;
@@ -64,7 +64,7 @@ a{color:inherit}
 /* ---------- shared type ---------- */
 .eyebrow{
   font-family:var(--f-mono);
-  font-size:11px;
+  font-size:15px;
   letter-spacing:.16em;
   text-transform:uppercase;
   font-weight:500;
@@ -102,12 +102,12 @@ a{color:inherit}
 }
 .mark span{color:var(--oxblood)}
 .mast-sub{
-  font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;
+  font-family:var(--f-mono);font-size:15px;letter-spacing:.1em;
   text-transform:uppercase;color:#5A6B65;margin-right:auto;
 }
 .mast-nav{display:flex;gap:22px}
 .mast-nav a{
-  font-family:var(--f-mono);font-size:11.5px;letter-spacing:.09em;
+  font-family:var(--f-mono);font-size:15.5px;letter-spacing:.09em;
   text-transform:uppercase;text-decoration:none;padding-bottom:2px;
   border-bottom:1px solid transparent;
 }
@@ -1084,6 +1084,7 @@ html{scroll-behavior:smooth}
   <!-- ============ PUBLICATIONS ============ -->
 
 <section class="publications section-shell" id="publications">
+   <div class="wrap">
 <div class="section-kicker">
 <span>05</span> Core publications</div>
 <div class="publications-heading">
@@ -1303,7 +1304,8 @@ html{scroll-behavior:smooth}
 <span class="pub-arrow" aria-hidden="true">↗</span>
 </a>
 </div>
-<p class="bibliography-note">Journal and conference versions are deduplicated. The 2025 MIUA abstract is explicitly labelled non-peer-reviewed; Vis2Reg is listed as a preprint. The 2023 Couinaud paper and its extended 2024 journal version are retained as distinct records.</p>
+</div>
+<!-- <p class="bibliography-note">Journal and conference versions are deduplicated. The 2025 MIUA abstract is explicitly labelled non-peer-reviewed; Vis2Reg is listed as a preprint. The 2023 Couinaud paper and its extended 2024 journal version are retained as distinct records.</p> -->
 </section>
   <!--
     Each entry below is a template. Fill in the real title, author list, venue and
@@ -1346,7 +1348,9 @@ html{scroll-behavior:smooth}
   </section> -->
 
   <!-- ============ TEAM / DETAILS ============ -->
+
 <section class="team", section id="team">
+  <div class="wrap">
 <div class="section-shell">
 <div class="section-kicker light">
 <span></span> Project team</div>
@@ -1354,7 +1358,7 @@ html{scroll-behavior:smooth}
 <article class="lead-profile">
 <img src="https://eps.leeds.ac.uk/images/resized/100x100-0-0-1-80-14012025JSP_UL_0861__2__4.jpg" alt="Dr Sharib Ali"/>
 <div>
-<span>Primary investigator</span>
+<span>Principal investigator</span>
 <h2>Dr Sharib Ali</h2>
 <p>Associate Professor and founder of the AI in Medicine and Surgery group at the University of Leeds, working across medical imaging, computational surgery, 3D reconstruction, segmentation and fusion.</p>
 <a href="https://eps.leeds.ac.uk/computing/staff/11465/dr-sharib-ali" target="_blank" rel="noreferrer">Leeds profile <span aria-hidden="true">↗</span>
@@ -1371,6 +1375,8 @@ html{scroll-behavior:smooth}
 <span>Researchers</span>
 <h3>Dr Gerardo Loza</h3>
 <p>Computational scientist, Tracking and Registration, University of Leeds.</p>
+<h3>Jiaming Feng</h3>
+<p>Masters student and in-coming PhD student at AIMS group, University of Leeds.</p>
 </article>
 <article>
 <span>Partner</span>
@@ -1387,6 +1393,7 @@ html{scroll-behavior:smooth}
 <h3>EPSRC</h3>
 <p>Engineering and Physical Sciences Research Council.</p>
 </article>
+</div>
 </div>
 </div>
 </div>
