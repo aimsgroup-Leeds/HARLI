@@ -42,7 +42,7 @@ Search `index.html` for these and replace them:
 
 | Find | Replace with |
 | --- | --- |
-| `USERNAME.github.io/REPO` | the real site URL, in the `canonical` and `og:url` tags |
+| `aimsgroup-Leeds.github.io/HARLI` | the real site URL, in the `canonical` and `og:url` tags |
 | `To confirm from the Leeds project record` | delete the `class="tbc"` wrapper once the details are filled in |
 
 The **Project record** section is a placeholder. Fill in the principal investigator, co-investigators, researchers, funder and grant reference, award value, dates, partners and publications, then remove `class="tbc"` from that `<div>` so the dashed outline and the "to confirm" label disappear.
