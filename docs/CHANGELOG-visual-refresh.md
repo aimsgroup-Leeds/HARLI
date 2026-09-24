@@ -10,8 +10,8 @@ First visual revision: `d361136`
 
 - Keep HARLI's research objectives at the centre of the hero, with navigation to the research and anatomy sections. Compare a public Patient 04 laparoscopic RGB frame with a prepared 3D overlay using saved manual alignment and a keyboard-operable range control.
 - Place one modest MICCAI 2026 AE-CAI × PRiSM workshop resource after the 13 publication records, linking to [Vis2Reg at frame 204](https://jarm1ng.github.io/Vis2Reg-Demo/?case=p4video&frame=204).
-- Embed a native interactive liver viewer in the anatomy section through `assets/anatomy/viewer.js` and `viewer.css`. Lazily load locally bundled Three.js, OrbitControls and `meshes.json`. Support pointer/touch orbit, keyboard rotation, camera presets, zoom, transparency, structure layers, reset and optional wireframe.
-- Replace the procedural Couinaud model with the eight source segments extracted from Xukun Zhang’s 3D-IRCADb case 01 annotation, with IV displayed as one region.
+- Give the project liver/tumour/vena-cava viewer its own titled `#internal-anatomy` section through `assets/anatomy/viewer.js` and `viewer.css`. Lazily load locally bundled Three.js, OrbitControls and `meshes.json`. Support pointer/touch orbit, keyboard rotation, camera presets, zoom, transparency, structure layers, reset and optional wireframe.
+- Place the real Couinaud model directly beneath the original eight-segment heading, visible without expanding a panel. It uses Xukun Zhang’s 3D-IRCADb case 01 annotation, with IV displayed as one region.
 - Refine typography, spacing, colour, mobile navigation and responsive publication/team layouts through `assets/site.css` and `assets/site.js`.
 - Link Jiaming Feng's team entry to [his homepage](https://jarm1ng.github.io/).
 - Preserve the existing research framework, all 13 publication records, team details and contact content.
@@ -62,6 +62,25 @@ The corrected project page and native viewer were checked in Chrome:
 - Actual mobile gestures verify page scrolling with touch rotation off, model rotation without page movement when enabled, and tap-to-isolate. Load failure/retry and shared Three.js library loading pass.
 - Responsive checks at 320, 390, 768, 820, 1024 and 1440 pixels show no overflow; axe checks at 390 and 1440 show no violations in tested states; both native viewers work with no script errors or idle render calls.
 - Existing project prose, all 13 publications and team details remain unchanged. Only Couinaud-specific source captions and controls replace the prior schematic description. Segment IV is kept combined because the source has no separate IVa/IVb label.
+
+## Model placement and copy
+
+The Couinaud model is now always visible directly beneath the original heading
+“The liver is divided into eight independent segments.” The project model
+with tumours and the vena cava follows in its own section, “Explore the
+anatomy beneath the surface.” Existing research prose, publications and team
+text remain unchanged. Only the added interaction copy and captions were
+simplified: the workshop resource describes the demo’s content and controls,
+and removes the unnecessary inference disclaimer. Detailed asset provenance
+remains in the source notices. The original schematic pipeline caption is
+preserved.
+
+Placement was checked in the DOM and desktop/mobile screenshots. Both viewers
+initialize and respond to their controls after the move, and share one copy
+of each rendering library. Checks at 320–1440 px found no horizontal overflow;
+axe checks at 390/1440 px returned no violations in tested states. No script
+errors occurred, and the original research text was independently compared
+against the baseline.
 
 ## Rollback
 

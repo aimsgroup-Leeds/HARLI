@@ -1,4 +1,4 @@
-/* HARLI: patient-derived Couinaud segments, loaded only when opened nearby. */
+/* HARLI: patient-derived Couinaud segments, loaded when the anatomy section approaches the viewport. */
 (() => {
   'use strict';
 
@@ -109,7 +109,7 @@
   }
 
   async function initialise() {
-    if (pending || runtime || !root.open) return;
+    if (pending || runtime) return;
     pending = true;
     root.dataset.couinaudState = 'loading';
     stage.setAttribute('aria-busy', 'true');
@@ -219,10 +219,10 @@
     let height = 0;
 
     function render() {
-      if (disposed || frame || !nearby || !root.open || document.hidden) return;
+      if (disposed || frame || !nearby || document.hidden) return;
       frame = window.requestAnimationFrame(() => {
         frame = 0;
-        if (!disposed && nearby && root.open && !document.hidden) renderer.render(scene, camera);
+        if (!disposed && nearby && !document.hidden) renderer.render(scene, camera);
       });
     }
     function setTouch(active) {
@@ -377,26 +377,18 @@
     };
   }
 
-  const revealLinkedModel = () => { if (window.location.hash === '#anatomy-explainer') root.open = true; };
-  window.addEventListener('hashchange', revealLinkedModel);
-  revealLinkedModel();
   setEnabled(false);
   retry.addEventListener('click', initialise);
-  root.addEventListener('toggle', () => {
-    if (!root.open) { if (runtime) runtime.stopTouch(); return; }
-    if (runtime) runtime.resize();
-    else if (nearby && !root.dataset.couinaudState) initialise();
-  });
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(entries => {
       nearby = entries[0].isIntersecting;
-      if (!nearby || !root.open) return;
+      if (!nearby) return;
       if (runtime) runtime.render();
       else if (!root.dataset.couinaudState) initialise();
     }, { rootMargin: '200px 0px' });
     observer.observe(root);
   } else {
     nearby = true;
-    if (root.open) initialise();
+    initialise();
   }
 })();

@@ -1,3 +1,9 @@
+.couinaud-explorer{margin-top:38px;scroll-margin-top:95px}
+.couinaud-heading{display:flex;justify-content:space-between;align-items:baseline;gap:20px;border-top:1px solid var(--rule);padding-top:22px}
+.couinaud-heading h3{font:500 14px/1.5 var(--f-display,sans-serif);margin:0;color:var(--ink)}
+.couinaud-heading>span{font:10px/1.5 var(--f-display,sans-serif);color:var(--muted)}
+#anatomy-explainer .model{margin-top:20px}
+@media(max-width:560px){.couinaud-heading{align-items:start;flex-direction:column;gap:5px}}
 /* Styles are scoped to the Couinaud explainer; the prepared anatomy viewer is independent. */
 #anatomy-explainer .model{grid-template-columns:minmax(0,1.45fr) minmax(280px,1fr);gap:28px;align-items:start}
 #anatomy-explainer .model-stage{height:540px;aspect-ratio:auto;background:#0b1b20;touch-action:pan-y;cursor:default;isolation:isolate}

@@ -12,7 +12,7 @@
 <meta property="og:description" content="Showing surgeons the liver segments, vessels, tumours and resection margins hidden beneath the surface of the organ.">
 <meta property="og:url" content="https://aimsgroup-Leeds.github.io/HARLI/">
 <meta property="og:image" content="https://aimsgroup-leeds.github.io/HARLI/assets/demo/laparoscopic-overlay.webp">
-<meta property="og:image:alt" content="Recorded laparoscopic frame with a manually aligned 3D liver overlay">
+<meta property="og:image:alt" content="Recorded laparoscopic frame with a 3D liver overlay">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#17403B">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2317403B'/><circle cx='16' cy='16' r='8' fill='none' stroke='%233FD3BE' stroke-width='2.4'/><circle cx='16' cy='16' r='2.6' fill='%238A2E2B'/></svg>">
@@ -516,12 +516,12 @@ html{scroll-behavior:smooth}
           <div class="image-toolbar"><span class="live-dot"></span> LAPAROSCOPY + 3D ANATOMY <span class="frame-label">RECORDED SEQUENCE</span></div>
           <div class="scope-frame" id="scope" style="--wipe:55%" role="group" aria-label="Compare the recorded image with its prepared AR overlay" aria-describedby="scope-caption">
             <img class="scope-image" src="assets/demo/laparoscopic-original.webp" width="1600" height="900" alt="Original laparoscopic camera view of the liver surface" fetchpriority="high" draggable="false">
-            <div class="scope-overlay" id="overlay"><img class="scope-image" src="assets/demo/laparoscopic-overlay.webp" width="1600" height="900" alt="The same frame with a translucent liver model and illustrative internal structures" fetchpriority="high" draggable="false"></div>
+            <div class="scope-overlay" id="overlay"><img class="scope-image" src="assets/demo/laparoscopic-overlay.webp" width="1600" height="900" alt="The same frame with a translucent liver model and internal structures" fetchpriority="high" draggable="false"></div>
             <span class="scope-tag tag-left">Prepared AR overlay</span><span class="scope-tag tag-right">Original image</span>
             <div class="scope-handle" aria-hidden="true"><span>↔</span></div>
           </div>
           <div class="scope-controls"><label for="wipe">Reveal overlay</label><input type="range" id="wipe" min="0" max="100" value="55" aria-describedby="scope-caption"><output id="pct" for="wipe">55%</output></div>
-          <figcaption class="scope-caption" id="scope-caption">Recorded laparoscopy with an existing 3D model overlaid using saved manual alignment. Drag to compare. Internal structures are illustrative, not clinically validated.</figcaption>
+          <figcaption class="scope-caption" id="scope-caption">Recorded laparoscopic view with a 3D anatomy overlay. Drag to compare the original image and the overlay.</figcaption>
         </figure>
       </div>
       <div class="project-strip"><p><span class="eyebrow">The HARLI project</span>Real-time high-fidelity augmented reality in laparoscopic liver resection</p><p><span class="eyebrow">Built together</span>Surgeons, patients &amp; industry</p><a href="#problem" aria-label="Discover the clinical problem">Discover the challenge <span aria-hidden="true">↓</span></a></div>
@@ -790,41 +790,9 @@ html{scroll-behavior:smooth}
         </div>
       </div>
 
-      <figure class="anatomy-viewer" id="anatomy-viewer" aria-labelledby="anatomy-viewer-title">
-        <div class="anatomy-workspace">
-          <div class="anatomy-stage" id="anatomy-stage" aria-busy="false">
-            <img class="anatomy-fallback" id="anatomy-fallback" src="assets/demo/anatomy.webp" width="1600" height="900" loading="lazy" alt="Prepared liver surface shown transparently, with two illustrative tumours and the vena cava visible inside.">
-            <div class="anatomy-stage-heading" aria-hidden="true"><span class="anatomy-status-dot"></span> 3D anatomy <span id="anatomy-current-view">Prepared model</span></div>
-            <div class="anatomy-loading" id="anatomy-loading"><p id="anatomy-status" role="status">Prepared liver anatomy.</p><noscript><p>Enable JavaScript to rotate the model and adjust its layers.</p></noscript><button id="anatomy-retry" type="button" hidden>Load 3D model</button></div>
-            <canvas id="anatomy-canvas" hidden tabindex="0" role="group" aria-label="Interactive 3D liver model" aria-describedby="anatomy-interaction-help anatomy-keyboard-help"></canvas>
-            <div class="anatomy-stage-footer" id="anatomy-stage-footer" hidden>
-              <p id="anatomy-interaction-help"><span class="anatomy-desktop-help">Drag to rotate · use + / − to zoom</span><span class="anatomy-mobile-help">Enable touch to rotate and pinch to zoom</span></p>
-              <button id="anatomy-touch" type="button" aria-pressed="false">Enable touch rotation</button>
-              <div class="anatomy-zoom" role="group" aria-label="Model zoom"><button id="anatomy-zoom-out" type="button" aria-label="Zoom out">−</button><button id="anatomy-zoom-in" type="button" aria-label="Zoom in">+</button></div>
-            </div>
-          </div>
-          <div class="anatomy-panel">
-            <div class="anatomy-panel-heading"><span class="anatomy-overline">Explore in 3D</span><h3 id="anatomy-viewer-title">Look beneath the surface.</h3><p>Rotate the liver and reveal the relationship between its surface and internal structures.</p></div>
-            <fieldset class="anatomy-settings" id="anatomy-settings" disabled>
-              <legend class="anatomy-sr-only">3D anatomy controls</legend>
-              <div class="anatomy-presets" role="group" aria-label="View presets">
-                <button type="button" data-anatomy-view="front" aria-pressed="true">Front</button><button type="button" data-anatomy-view="side" aria-pressed="false">Side</button><button type="button" data-anatomy-view="top" aria-pressed="false">Top</button>
-              </div>
-              <div class="anatomy-layers">
-                <label><input type="checkbox" id="anatomy-layer-liver" data-anatomy-layer="liver" checked><span class="anatomy-swatch anatomy-swatch-liver" aria-hidden="true"></span><span>Liver surface</span></label>
-                <label><input type="checkbox" id="anatomy-layer-tumour" data-anatomy-layer="tumour" checked><span class="anatomy-swatch anatomy-swatch-tumour" aria-hidden="true"></span><span>Tumour 1</span></label>
-                <label><input type="checkbox" id="anatomy-layer-tumor2" data-anatomy-layer="tumor2" checked><span class="anatomy-swatch anatomy-swatch-tumor2" aria-hidden="true"></span><span>Tumour 2</span></label>
-                <label><input type="checkbox" id="anatomy-layer-vena-cava" data-anatomy-layer="vena_cava" checked><span class="anatomy-swatch anatomy-swatch-vena" aria-hidden="true"></span><span>Vena cava</span></label>
-              </div>
-              <div class="anatomy-transparency"><label for="anatomy-transparency">Liver transparency <output id="anatomy-transparency-value" for="anatomy-transparency">65%</output></label><input id="anatomy-transparency" type="range" min="0" max="100" step="1" value="65" aria-valuetext="65 percent transparent"><div aria-hidden="true"><span>Solid</span><span>Transparent</span></div></div>
-              <div class="anatomy-panel-bottom"><label for="anatomy-wireframe"><input id="anatomy-wireframe" type="checkbox"> Wireframe</label><button id="anatomy-reset" type="button">Reset view <span aria-hidden="true">↺</span></button></div>
-            </fieldset>
-            <details class="anatomy-keyboard"><summary>Keyboard controls</summary><p id="anatomy-keyboard-help">Focus the model, then use arrow keys to rotate, + / − to zoom, and R to reset. Tab moves to the next control. Page scrolling stays available outside touch rotation.</p></details>
-          </div>
-        </div>
-        <figcaption class="anatomy-caption">Prepared liver geometry with two illustrative tumours and the vena cava. Internal structure placement is for research illustration.</figcaption>
-      </figure>
-      <details class="anatomy-explainer" id="anatomy-explainer"><summary>Explore the eight Couinaud segments <span>Patient-derived 3D model</span></summary>
+
+      <div class="couinaud-explorer" id="anatomy-explainer" role="group" aria-labelledby="couinaud-title">
+        <div class="couinaud-heading"><h3 id="couinaud-title">Explore the eight Couinaud segments</h3><span>Patient-derived 3D model</span></div>
         <div class="model">
           <div>
             <div class="model-stage" id="stage" aria-busy="false">
@@ -867,7 +835,54 @@ html{scroll-behavior:smooth}
             </div>
           </div>
         </div>
-      </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INTERNAL ANATOMY ============ -->
+  <section id="internal-anatomy" class="internal-anatomy rule-top" aria-labelledby="internal-anatomy-title">
+    <div class="wrap">
+      <div class="two-col">
+        <div class="col-label">
+          <span class="eyebrow">Interactive 3D anatomy</span>
+          <h2 class="section-title" id="internal-anatomy-title">Explore the anatomy beneath the surface.</h2>
+        </div>
+        <div><p>Rotate the liver, adjust its transparency and explore the relationship between the liver surface, tumours and vena cava. Switch individual structures on and off to see how they sit within the model.</p></div>
+      </div>
+      <figure class="anatomy-viewer" id="anatomy-viewer" aria-labelledby="anatomy-viewer-title">
+        <div class="anatomy-workspace">
+          <div class="anatomy-stage" id="anatomy-stage" aria-busy="false">
+            <img class="anatomy-fallback" id="anatomy-fallback" src="assets/demo/anatomy.webp" width="1600" height="900" loading="lazy" alt="Translucent liver model showing two tumour structures and the vena cava.">
+            <div class="anatomy-stage-heading" aria-hidden="true"><span class="anatomy-status-dot"></span> 3D anatomy <span id="anatomy-current-view">Liver model</span></div>
+            <div class="anatomy-loading" id="anatomy-loading"><p id="anatomy-status" role="status">Liver anatomy.</p><noscript><p>Enable JavaScript to rotate the model and adjust its layers.</p></noscript><button id="anatomy-retry" type="button" hidden>Load 3D model</button></div>
+            <canvas id="anatomy-canvas" hidden tabindex="0" role="group" aria-label="Interactive 3D liver model" aria-describedby="anatomy-interaction-help anatomy-keyboard-help"></canvas>
+            <div class="anatomy-stage-footer" id="anatomy-stage-footer" hidden>
+              <p id="anatomy-interaction-help"><span class="anatomy-desktop-help">Drag to rotate · use + / − to zoom</span><span class="anatomy-mobile-help">Enable touch to rotate and pinch to zoom</span></p>
+              <button id="anatomy-touch" type="button" aria-pressed="false">Enable touch rotation</button>
+              <div class="anatomy-zoom" role="group" aria-label="Model zoom"><button id="anatomy-zoom-out" type="button" aria-label="Zoom out">−</button><button id="anatomy-zoom-in" type="button" aria-label="Zoom in">+</button></div>
+            </div>
+          </div>
+          <div class="anatomy-panel">
+            <div class="anatomy-panel-heading"><span class="anatomy-overline">Explore in 3D</span><h3 id="anatomy-viewer-title">Layers and viewpoints</h3><p>Adjust transparency to reveal the tumours and vena cava.</p></div>
+            <fieldset class="anatomy-settings" id="anatomy-settings" disabled>
+              <legend class="anatomy-sr-only">3D anatomy controls</legend>
+              <div class="anatomy-presets" role="group" aria-label="View presets">
+                <button type="button" data-anatomy-view="front" aria-pressed="true">Front</button><button type="button" data-anatomy-view="side" aria-pressed="false">Side</button><button type="button" data-anatomy-view="top" aria-pressed="false">Top</button>
+              </div>
+              <div class="anatomy-layers">
+                <label><input type="checkbox" id="anatomy-layer-liver" data-anatomy-layer="liver" checked><span class="anatomy-swatch anatomy-swatch-liver" aria-hidden="true"></span><span>Liver surface</span></label>
+                <label><input type="checkbox" id="anatomy-layer-tumour" data-anatomy-layer="tumour" checked><span class="anatomy-swatch anatomy-swatch-tumour" aria-hidden="true"></span><span>Tumour 1</span></label>
+                <label><input type="checkbox" id="anatomy-layer-tumor2" data-anatomy-layer="tumor2" checked><span class="anatomy-swatch anatomy-swatch-tumor2" aria-hidden="true"></span><span>Tumour 2</span></label>
+                <label><input type="checkbox" id="anatomy-layer-vena-cava" data-anatomy-layer="vena_cava" checked><span class="anatomy-swatch anatomy-swatch-vena" aria-hidden="true"></span><span>Vena cava</span></label>
+              </div>
+              <div class="anatomy-transparency"><label for="anatomy-transparency">Liver transparency <output id="anatomy-transparency-value" for="anatomy-transparency">65%</output></label><input id="anatomy-transparency" type="range" min="0" max="100" step="1" value="65" aria-valuetext="65 percent transparent"><div aria-hidden="true"><span>Solid</span><span>Transparent</span></div></div>
+              <div class="anatomy-panel-bottom"><label for="anatomy-wireframe"><input id="anatomy-wireframe" type="checkbox"> Wireframe</label><button id="anatomy-reset" type="button">Reset view <span aria-hidden="true">↺</span></button></div>
+            </fieldset>
+            <details class="anatomy-keyboard"><summary>Keyboard controls</summary><p id="anatomy-keyboard-help">Focus the model, then use arrow keys to rotate, + / − to zoom, and R to reset. Tab moves to the next control. Page scrolling stays available outside touch rotation.</p></details>
+          </div>
+        </div>
+        <figcaption class="anatomy-caption">Liver surface, two tumour structures and the vena cava from the project’s 3D demonstration.</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -1134,7 +1149,7 @@ html{scroll-behavior:smooth}
 </a>
 </div>
 <aside class="research-resource" id="demo" aria-labelledby="resource-title">
-  <div><span class="eyebrow">Related resource · MICCAI 2026</span><h3 id="resource-title">AE-CAI × PRiSM workshop demonstration</h3><p>The companion Vis2Reg viewer brings recorded laparoscopy and existing 3D anatomy together using saved manual alignment. It does not run registration inference.</p></div>
+  <div><span class="eyebrow">Related resource · MICCAI 2026</span><h3 id="resource-title">AE-CAI × PRiSM workshop demonstration</h3><p>Explore recorded laparoscopy, compare overlays and interact with 3D liver anatomy in the Vis2Reg workshop demo.</p></div>
   <a class="text-link" href="https://jarm1ng.github.io/Vis2Reg-Demo/?case=p4video&amp;frame=204" target="_blank" rel="noopener noreferrer">Open workshop demo <span aria-hidden="true">↗</span></a>
 </aside>
 </div>

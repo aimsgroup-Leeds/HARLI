@@ -37,8 +37,8 @@ Open [the local preview](http://localhost:8000/). Check desktop and narrow mobil
 Research text, the four-stage framework, all 13 publication records, team details and contact links remain in `index.html`. The visual refresh adds:
 
 - A project-focused hero with links into the research and anatomy sections, plus a comparison of the same Patient 04 laparoscopic RGB frame and manually aligned 3D overlay.
-- An interactive prepared liver model in `#anatomy`, with pointer/touch orbit, keyboard rotation, view presets, zoom, transparency, structure layers, reset and optional wireframe. Visitors explore the model within the project page.
-- A second interactive viewer in “Explore the eight Couinaud segments”, using real 3D-IRCADb case 01 annotations shared by Xukun Zhang et al. The source has eight regions, so IV is displayed as one segment. The procedural model has been replaced.
+- The real Couinaud model directly beneath the original eight-segment heading in `#anatomy`, visible without expanding a panel. It uses 3D-IRCADb case 01 annotations shared by Xukun Zhang et al.; IV is displayed as one source region.
+- A separate `#internal-anatomy` section titled “Explore the anatomy beneath the surface.” for the project liver/tumour/vena-cava model, with rotation, presets, zoom, transparency, layers, reset and wireframe.
 - One modest `#demo` resource after the 13 publication records, linking to the [MICCAI 2026 AE-CAI × PRiSM workshop demonstration](https://jarm1ng.github.io/Vis2Reg-Demo/?case=p4video&frame=204).
 - A link from Jiaming Feng's name to [his homepage](https://jarm1ng.github.io/).
 
@@ -46,7 +46,7 @@ Keep bibliography details, researcher roles and project claims consistent with t
 
 ## Images, models and attribution
 
-The hero images and first anatomy viewer reuse the prepared Patient 04 assets from the project's existing [demonstration repository](https://github.com/Jarm1ng/Vis2Reg-Demo). See the [image source notice](assets/demo/README.md) and [model source notice](assets/anatomy/README.md) for provenance and reuse details; retain these notices when replacing or redistributing assets.
+The hero images and internal-anatomy viewer reuse the prepared Patient 04 assets from the project's existing [demonstration repository](https://github.com/Jarm1ng/Vis2Reg-Demo). See the [image source notice](assets/demo/README.md) and [model source notice](assets/anatomy/README.md) for provenance and reuse details; retain these notices when replacing or redistributing assets.
 
 Vis2Reg is a registration method: it aligns existing 3D anatomy with a 2D laparoscopic view and does not generate the meshes. The interactive viewer displays prepared model inputs; the hero overlay uses saved manual alignment. Neither runs registration inference. Internal anatomy is illustrative and unvalidated.
 
