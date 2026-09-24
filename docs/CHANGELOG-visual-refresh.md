@@ -25,7 +25,7 @@ Commit `d361136` contains the first visual revision. The follow-up revision remo
 
 ## Review and release
 
-Preview with `python3 -m http.server 8000` from the repository root. Review the comparison and model controls, workshop resource, image captions, mobile layout and existing research content. Also check asset loading under the `/HARLI/` project path. The changes remain on the feature branch and have not been merged into `main` or deployed.
+Preview with `python3 -m http.server 8000` from the repository root. Review the comparison and model controls, workshop resource, image captions, mobile layout and existing research content. Also check asset loading under the `/HARLI/` project path. Publication is tracked in [PR #1](https://github.com/aimsgroup-Leeds/HARLI/pull/1). The pre-refresh site is preserved at tag `backup/pre-refresh-2026-09-24`; see [restoration instructions](RESTORING-ORIGINAL.md).
 
 The existing `.github/workflows/jekyll-gh-pages.yml` remains unchanged. Only integration into `main` triggers its automatic public-site deployment. Fetch and reconcile the latest upstream edits before merging the feature branch through a reviewed pull request; do not force-push or reset shared history.
 
