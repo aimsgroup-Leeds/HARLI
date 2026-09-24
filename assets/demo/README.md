@@ -1,4 +1,4 @@
-# Vis2Reg demonstration images
+# Recorded imagery and anatomy preview
 
 These assets were exported on 24 September 2026 from the project's existing
 [Vis2Reg — Liver AR Studio](https://jarm1ng.github.io/Vis2Reg-Demo/)
@@ -18,7 +18,6 @@ Source release directory in the author's workspace:
 | `laparoscopic-original.webp` | 1600 × 900 | Recorded Patient 04 laparoscopic image, frame 204 (22.8 s). |
 | `laparoscopic-overlay.webp` | 1600 × 900 | The same frame with the demo's saved manual liver registration and illustrative internal anatomy. |
 | `anatomy.webp` | 1600 × 900 | The same case's prepared 3D meshes, viewed with the viewer's front camera preset. |
-| `demo-studio.webp` | 1440 × 1100 | Screenshot of the running public-release demo, on the same frame and display settings. |
 
 The original frame source is `data/frames/f_000204.jpg` (960 × 540).
 Its 1600-pixel-wide export is browser-resampled, not additional source detail.
@@ -43,9 +42,12 @@ await Vis2Reg.captureImage({ original: false, width: 1600 });
 
 `opacity: 65` is the viewer's liver *transparency* setting, so the liver material
 has alpha 0.35. All anatomy layers were enabled; point-cloud display was disabled.
-The full-interface screenshot used the light theme at 1440 × 1100 pixels.
 PNG exports were encoded with `cwebp -q 86 -m 6`. No generative image editing,
 retouching, pose adjustment, anatomical modification or image cropping was used.
+
+The prepared liver mesh is an **input to registration**. Vis2Reg is a 3D–2D
+registration method; it does not generate the meshes. The page uses the model
+independently in its native 3D anatomy viewer; see [its source notice](../anatomy/README.md).
 
 ## Scientific and reuse scope
 

@@ -3,18 +3,20 @@
 Website for **Real-time high-fidelity augmented reality in laparoscopic liver resection**, University of Leeds.
 
 - [Project website](https://aimsgroup-leeds.github.io/HARLI/)
-- [MICCAI 2026 AE-CAI × PRiSM demo — Vis2Reg](https://jarm1ng.github.io/Vis2Reg-Demo/?case=p4video&frame=204)
-- [Demo source repository](https://github.com/Jarm1ng/Vis2Reg-Demo)
 
 ## Files and local preview
 
-The site uses plain HTML, CSS and JavaScript, with Google Fonts loaded from a CDN. No package installation or local build step is needed.
+The site uses plain HTML, CSS and JavaScript, with Google Fonts loaded from a CDN. The interactive anatomy viewer lazily loads locally bundled Three.js, OrbitControls and model data. No package installation or local build step is needed.
 
 ```text
 index.html                           research content and page structure
 assets/site.css                      refreshed styling and responsive layouts
 assets/site.js                       image comparison and mobile navigation
-assets/demo/                         exported images from the public demo
+assets/anatomy/viewer.js              native interactive 3D anatomy viewer
+assets/anatomy/viewer.css             viewer layout and controls
+assets/anatomy/patient04-meshes.json            prepared liver and internal anatomy meshes
+assets/anatomy/README.md              model sources and third-party notices
+assets/demo/                         exported laparoscopic and model images
 assets/demo/README.md                 asset sources and reuse notice
 .github/workflows/jekyll-gh-pages.yml existing GitHub Pages deployment
 docs/CHANGELOG-visual-refresh.md      scope, baseline and rollback notes
@@ -26,24 +28,27 @@ From the repository root, run:
 python3 -m http.server 8000
 ```
 
-Open [the local preview](http://localhost:8000/). Check desktop and narrow mobile layouts, navigation, the image comparison slider, publication links and the demo link before submitting changes.
+Open [the local preview](http://localhost:8000/). Check desktop and narrow mobile layouts, navigation, the image comparison slider, anatomy controls, publication links and the workshop demo link before submitting changes. Also preview under the `/HARLI/` project path used by GitHub Pages.
 
 ## Editing the page
 
 Research text, the four-stage framework, all 13 publication records, team details and contact links remain in `index.html`. The visual refresh adds:
 
-- A hero comparison of the same Patient 04 laparoscopic RGB frame and registration overlay, with a range control.
-- A `#demo` section linking directly to the MICCAI 2026 AE-CAI × PRiSM demo at frame 204.
-- A real 3D preview in `#anatomy`, alongside the existing procedural Couinaud explainer.
+- A project-focused hero with links into the research and anatomy sections, plus a comparison of the same Patient 04 laparoscopic RGB frame and manually aligned 3D overlay.
+- An interactive prepared liver model in `#anatomy`, with pointer/touch orbit, keyboard rotation, view presets, zoom, transparency, structure layers, reset and optional wireframe. Visitors explore the model within the project page.
+- The existing procedural Couinaud explainer, retained separately and explicitly labelled as a schematic.
+- One modest `#demo` resource after the 13 publication records, linking to the [MICCAI 2026 AE-CAI × PRiSM workshop demonstration](https://jarm1ng.github.io/Vis2Reg-Demo/?case=p4video&frame=204).
 - A link from Jiaming Feng's name to [his homepage](https://jarm1ng.github.io/).
 
 Keep bibliography details, researcher roles and project claims consistent with their source records when editing. Update the publication count if records are added or removed. Prefer focused changes to research copy and styling so collaborators can review them separately.
 
-## Images and attribution
+## Images, models and attribution
 
-The demo images are exports of the public Patient 04 demo assets, not generated replacement illustrations. See [the asset source and reuse notice](assets/demo/README.md) for provenance and export details; retain that notice when replacing or redistributing assets.
+The images and interactive meshes reuse the prepared Patient 04 assets from the project's existing [demonstration repository](https://github.com/Jarm1ng/Vis2Reg-Demo). See the [image source notice](assets/demo/README.md) and [model source notice](assets/anatomy/README.md) for provenance and reuse details; retain these notices when replacing or redistributing assets.
 
-Captions distinguish the recorded laparoscopic view, demo registration output and 3D preview from the schematic research pipeline and browser-generated Couinaud model. Keep these distinctions: the demo illustrates registration research, not completion of every HARLI research stage or clinical validation of the full system. Do not describe every visual as a schematic or as unrelated to patient data.
+Vis2Reg is a registration method: it aligns existing 3D anatomy with a 2D laparoscopic view and does not generate the meshes. The interactive viewer displays prepared model inputs; the hero overlay uses saved manual alignment. Neither runs registration inference. Internal anatomy is illustrative and unvalidated.
+
+Keep captions clear about the recorded laparoscopic image, prepared 3D meshes and manually aligned overlay. The research pipeline diagram and procedural Couinaud model are separate schematics. These visualisations do not establish completion or clinical validation of every HARLI research stage.
 
 For additional published figures, check the licence of the specific source and include the required attribution. A paper being publicly readable does not by itself grant permission to reuse its figures.
 
@@ -51,6 +56,6 @@ For additional published figures, check the licence of the specific source and i
 
 The existing workflow, [jekyll-gh-pages.yml](.github/workflows/jekyll-gh-pages.yml), builds with Jekyll and deploys to GitHub Pages after a push to `main`; it also supports manual dispatch. This refresh leaves that workflow unchanged. A feature branch or pull request does not itself update the public site.
 
-The refresh branch is `codex/demo-visual-refresh`, based on commit `cfb694de6956418899baba75ccb18f1b8ccd5bbd`. Before merging, fetch the latest `origin/main`, review changes made by other contributors and reconcile them on the feature branch. Preview the combined result and merge through a reviewed pull request. Do not force-push or reset shared history.
+The refresh branch is `codex/demo-visual-refresh`, based on commit `cfb694de6956418899baba75ccb18f1b8ccd5bbd`. The first visual revision is preserved in commit `d361136`; the project-focused revision is a separate follow-up change. These changes have not been merged into `main` or deployed. Before merging, fetch the latest `origin/main`, review changes made by other contributors and reconcile them on the feature branch. Preview the combined result and merge through a reviewed pull request. Do not force-push or reset shared history.
 
 To undo a merged refresh, use GitHub's **Revert** action on its pull request and review the resulting reversal. Alternatively, create a new branch from the latest `main` and revert the specific integration commit: `git revert <squash-commit>` for a squash merge, or `git revert -m 1 <merge-commit>` for a merge commit after confirming parent 1 is `main`. Resolve conflicts while preserving subsequent edits, preview, and submit a rollback pull request. Reverting the refresh commit preserves history; resetting to the baseline could discard collaborators' later work.
