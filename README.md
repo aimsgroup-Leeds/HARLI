@@ -1,86 +1,63 @@
 # HARLI — project website
 
-Static website for **Real-time high-fidelity augmented reality in laparoscopic liver resection**, University of Leeds.
+Website for **Real-time high-fidelity augmented reality in laparoscopic liver resection**, University of Leeds.
 
-One self-contained HTML file. No build step, no framework, no dependencies beyond Google Fonts loaded over CDN.
+- [Project website](https://aimsgroup-leeds.github.io/HARLI/)
 
+## Files and local preview
+
+The site uses plain HTML, CSS and JavaScript, with Google Fonts loaded from a CDN. The interactive anatomy viewer lazily loads locally bundled Three.js, OrbitControls and model data. No package installation or local build step is needed.
+
+```text
+index.html                           research content and page structure
+assets/site.css                      refreshed styling and responsive layouts
+assets/site.js                       image comparison and mobile navigation
+assets/anatomy/viewer.js              native interactive 3D anatomy viewer
+assets/anatomy/viewer.css             viewer layout and controls
+assets/anatomy/patient04-meshes.json   prepared liver and internal anatomy meshes
+assets/anatomy/README.md              model sources and third-party notices
+assets/couinaud/                     real Couinaud surfaces, viewer and source notes
+scripts/build_couinaud_model.py       optional reproducible mask-to-mesh conversion
+assets/demo/                         exported laparoscopic and model images
+assets/demo/README.md                 asset sources and reuse notice
+.github/workflows/jekyll-gh-pages.yml existing GitHub Pages deployment
+docs/CHANGELOG-visual-refresh.md      scope, baseline and rollback notes
 ```
-.
-├── index.html                  the entire site
-├── .nojekyll                   tells Pages to serve files as-is
-├── .github/workflows/pages.yml deploys on push to main
-└── README.md
+
+From the repository root, run:
+
+```bash
+python3 -m http.server 8000
 ```
 
-## Publishing
+Open [the local preview](http://localhost:8000/). Check desktop and narrow mobile layouts, navigation, the image comparison slider, anatomy controls, publication links and the workshop demo link before submitting changes. Also preview under the `/HARLI/` project path used by GitHub Pages.
 
-1. Create a repository on GitHub and push these files to `main`:
+## Editing the page
 
-   ```bash
-   git init
-   git add .
-   git commit -m "HARLI project site"
-   git branch -M main
-   git remote add origin https://github.com/USERNAME/REPO.git
-   git push -u origin main
-   ```
+Research text, the four-stage framework, all 13 publication records, team details and contact links remain in `index.html`. The visual refresh adds:
 
-2. In the repository, open **Settings → Pages** and set **Source** to **GitHub Actions**.
+- A project-focused hero with links into the research and anatomy sections, plus a comparison of the same Patient 04 laparoscopic RGB frame and manually aligned 3D overlay.
+- The real Couinaud model directly beneath the original eight-segment heading in `#anatomy`, visible without expanding a panel. It uses 3D-IRCADb case 01 annotations shared by Xukun Zhang et al.; IV is displayed as one source region.
+- A separate `#internal-anatomy` section titled “Explore the anatomy beneath the surface.” for the project liver/tumour/vena-cava model, with rotation, presets, zoom, transparency, layers, reset and wireframe.
+- One modest `#demo` resource after the 13 publication records, linking to the [MICCAI 2026 AE-CAI × PRiSM workshop demonstration](https://jarm1ng.github.io/Vis2Reg-Demo/?case=p4video&frame=204).
+- A link from Jiaming Feng's name to [his homepage](https://jarm1ng.github.io/).
 
-3. Push again, or run the workflow manually from the **Actions** tab. The site appears at
-   `https://USERNAME.github.io/REPO/` within a minute or two.
+Keep bibliography details, researcher roles and project claims consistent with their source records when editing. Update the publication count if records are added or removed. Prefer focused changes to research copy and styling so collaborators can review them separately.
 
-If you'd rather skip Actions entirely, set **Source** to **Deploy from a branch**, pick `main` and `/ (root)`, and delete `.github/`. The `.nojekyll` file matters either way — without it Pages runs the files through Jekyll, which ignores anything starting with an underscore.
+## Images, models and attribution
 
-### Custom domain
+The hero images and internal-anatomy viewer reuse the prepared Patient 04 assets from the project's existing [demonstration repository](https://github.com/Jarm1ng/Vis2Reg-Demo). See the [image source notice](assets/demo/README.md) and [model source notice](assets/anatomy/README.md) for provenance and reuse details; retain these notices when replacing or redistributing assets.
 
-Add a file named `CNAME` at the root containing only the domain, e.g. `harli.leeds.ac.uk`, then configure the DNS record with your IT service. Update the `canonical` and `og:url` tags in `index.html` to match.
+Vis2Reg is a registration method: it aligns existing 3D anatomy with a 2D laparoscopic view and does not generate the meshes. The interactive viewer displays prepared model inputs; the hero overlay uses saved manual alignment. Neither runs registration inference. Internal anatomy is illustrative and unvalidated.
 
-## Before you publish
+Keep captions clear about the recorded laparoscopic image, prepared 3D meshes and manually aligned overlay. The research pipeline diagram remains schematic. The Couinaud viewer instead uses a CT-derived annotated case, with no generated vessels or artificial segment boundaries. Its [source notice](assets/couinaud/README.md) records the existing author permission, pinned annotation, label convention and display processing. These visualisations do not establish completion or clinical validation of every HARLI research stage.
 
-Search `index.html` for these and replace them:
+For additional published figures, check the licence of the specific source and include the required attribution. A paper being publicly readable does not by itself grant permission to reuse its figures.
 
-| Find | Replace with |
-| --- | --- |
-| `aimsgroup-Leeds.github.io/HARLI` | the real site URL, in the `canonical` and `og:url` tags |
-| `To confirm from the Leeds project record` | delete the `class="tbc"` wrapper once the details are filled in |
+## Deployment and collaboration
 
-The **Project record** section is a placeholder. Fill in the principal investigator, co-investigators, researchers, funder and grant reference, award value, dates, partners and publications, then remove `class="tbc"` from that `<div>` so the dashed outline and the "to confirm" label disappear.
+The existing workflow, [jekyll-gh-pages.yml](.github/workflows/jekyll-gh-pages.yml), builds with Jekyll and deploys to GitHub Pages after a push to `main`; it also supports manual dispatch. This refresh leaves that workflow unchanged. A feature branch or pull request does not itself update the public site.
 
-## Publications
+The refresh branch is `codex/demo-visual-refresh`, based on commit `cfb694de6956418899baba75ccb18f1b8ccd5bbd`. The first visual revision is preserved in commit `d361136`; the project-focused revision is a separate follow-up change. The pre-refresh site is preserved at tag `backup/pre-refresh-2026-09-24`. [Pull request #1](https://github.com/aimsgroup-Leeds/HARLI/pull/1) records the publication revision. See [restoring original content](docs/RESTORING-ORIGINAL.md) for complete or selective recovery. For later changes, fetch the latest `origin/main`, review contributions made by others and reconcile them on a feature branch. Preview the combined result and merge through a reviewed pull request. Do not force-push or reset shared history.
 
-The **Publications** section contains one template entry, marked with `class="tbc"`. Fill in the title, author list, venue and year from the paper itself, then remove `class="tbc"` from the `<li>`. Duplicate the `<li>` for each additional paper. Empty `href="#"` link chips should be deleted rather than left dead.
-
-### Reusing figures from papers
-
-Before putting a figure, table or block of text from a published paper on this site, check the licence of that specific paper. arXiv preprints are **not** uniformly open — the default arXiv licence grants distribution of the paper as a whole but does not grant reuse of individual figures elsewhere. Papers deposited under CC BY are reusable with attribution; those under a publisher's copyright are not, even when the authors are the same people running this site. Where a figure is reusable, credit it with the full citation and the licence in the caption.
-
-## Editing the content
-
-Everything lives in `index.html`. The sections in order:
-
-- **Hero** — headline, summary, fact file, and the interactive laparoscope viewport
-- **The problem** — clinical framing, the three barriers, epidemiology figures
-- **The framework** — the four project stages
-- **Anatomy** — the eight Couinaud segments
-- **Impact** — outcomes and co-design with surgeons, patients and industry
-- **Project record** — placeholder for people and funding
-- **Contact**
-
-Colours, typefaces and spacing are CSS custom properties in the `:root` block at the top of the `<style>` element. Changing `--drape`, `--oxblood` and `--overlay` re-themes the whole page.
-
-## About the illustrations
-
-Everything visual on this page is original and generated in the browser. Nothing is taken from a published figure, and nothing is patient data.
-
-- **Hero viewport** — hand-drawn SVG. Anterior view of the liver with the Couinaud segments, portal and hepatic venous trees, a lesion with its margin, and a resection following the segment VIII boundary. The camera layer shows only the falciform ligament and the gallbladder, which are the two Couinaud-relevant landmarks genuinely visible on the organ surface.
-- **3D model** — a procedural mesh built at run time in `<canvas>` with no 3D library. A unit sphere is deformed into a hepatic shape, then each face is assigned a segment using the three hepatic venous planes and the portal plane. Area-weighted, this gives roughly 61% right lobe, 36% left, 2.5% caudate, which is close to real proportions. To retune it, edit `surface()` and the `P_RHV` / `P_MHV` / `P_LHV` constants in the second `<script>` block.
-- **Pipeline figure** — hand-drawn SVG, schematic only.
-
-Captions on the page state that these are illustrative rather than project output. Please keep that wording, or replace the graphics with real figures and update the captions accordingly.
-
-If you swap in a figure from a paper, check that paper's licence first — see the note under Publications above.
-
-## Accessibility
-
-The overlay wipe is operable with the slider beneath it as well as by dragging, keyboard focus is visible throughout, and `prefers-reduced-motion` disables the page-load sweep and all transitions.
+To undo a merged refresh, use GitHub's **Revert** action on its pull request and review the resulting reversal. Alternatively, create a new branch from the latest `main` and revert the specific integration commit: `git revert <squash-commit>` for a squash merge, or `git revert -m 1 <merge-commit>` for a merge commit after confirming parent 1 is `main`. Resolve conflicts while preserving subsequent edits, preview, and submit a rollback pull request. Reverting the refresh commit preserves history; resetting to the baseline could discard collaborators' later work.
