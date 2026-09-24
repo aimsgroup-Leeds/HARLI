@@ -476,6 +476,8 @@ html{scroll-behavior:smooth}
 <script src="assets/site.js" defer></script>
 <link rel="stylesheet" href="assets/anatomy/viewer.css">
 <script src="assets/anatomy/viewer.js" defer></script>
+<link rel="stylesheet" href="assets/couinaud/viewer.css">
+<script src="assets/couinaud/viewer.js" defer></script>
 </head>
 <body>
 <a class="skip-link" href="#top">Skip to content</a>
@@ -822,44 +824,49 @@ html{scroll-behavior:smooth}
         </div>
         <figcaption class="anatomy-caption">Prepared liver geometry with two illustrative tumours and the vena cava. Internal structure placement is for research illustration.</figcaption>
       </figure>
-      <details class="anatomy-explainer" id="anatomy-explainer"><summary>Explore the eight Couinaud segments <span>Interactive schematic</span></summary>
-      <div class="model">
-        <div>
-          <div class="model-stage" id="stage">
-            <canvas id="liver3d" tabindex="0" role="img" aria-label="Interactive schematic liver model. Use arrow keys to rotate; choose a segment in the adjacent list.">Schematic liver model. Segment names are listed alongside.</canvas>
-            <div class="model-modes">
-              <button type="button" data-mode="segments" aria-pressed="true">Segments</button>
-              <button type="button" data-mode="mesh" aria-pressed="false">Mesh</button>
-              <button type="button" data-mode="surface" aria-pressed="false">Surface</button>
+      <details class="anatomy-explainer" id="anatomy-explainer"><summary>Explore the eight Couinaud segments <span>Patient-derived 3D model</span></summary>
+        <div class="model">
+          <div>
+            <div class="model-stage" id="stage" aria-busy="false">
+              <img class="couinaud-fallback" id="couinaud-fallback" src="assets/couinaud/model-preview.webp" width="760" height="541" alt="Patient-derived liver model with the eight Couinaud segments shown in different colours." loading="lazy">
+              <canvas id="liver3d" tabindex="0" role="img" aria-label="Eight Couinaud segments, patient-derived 3D liver model. Use arrow keys to rotate, plus and minus to zoom, and R to reset." aria-describedby="couinaud-keyboard-help" hidden>Patient-derived 3D liver model. Segment names are listed alongside.</canvas>
+              <div class="couinaud-stage-heading">3D-IRCADb · Case 01</div>
+              <div class="model-modes" role="group" aria-label="Model display">
+                <button type="button" data-couinaud-mode="segments" aria-pressed="true" disabled>Segments</button>
+                <button type="button" data-couinaud-mode="mesh" aria-pressed="false" disabled>Mesh</button>
+                <button type="button" data-couinaud-mode="surface" aria-pressed="false" disabled>Surface</button>
+              </div>
+              <div class="couinaud-loading" id="couinaud-loading" role="status">
+                <p id="couinaud-status">Loading the eight liver segments…</p>
+                <button id="couinaud-retry" type="button" hidden>Try loading 3D again</button>
+              </div>
+              <div class="couinaud-footer" id="couinaud-footer" hidden>
+                <p><span class="couinaud-desktop-help">Drag to rotate · click a segment to isolate</span><span class="couinaud-touch-help" id="couinaud-touch-help">Touch rotation is off · scroll freely</span></p>
+                <button id="couinaud-touch" type="button" aria-pressed="false" disabled>Enable touch rotation</button>
+                <div class="couinaud-zoom" role="group" aria-label="Model zoom"><button id="couinaud-zoom-out" type="button" aria-label="Zoom out" disabled>−</button><button id="couinaud-zoom-in" type="button" aria-label="Zoom in" disabled>+</button></div>
+              </div>
             </div>
-            <span class="model-hint">Drag or use arrow keys to rotate</span>
+            <p class="couinaud-caption">Reconstructed from CT-derived segment annotations shared by <a href="https://github.com/xukun-zhang/Couinaud-Segmentation" target="_blank" rel="noopener noreferrer">Xukun Zhang et al.</a>, using <a href="https://www.ircad.fr/research-and-development/data-sets/liver-segmentation-3d-ircadb-01/" target="_blank" rel="noopener noreferrer">3D-IRCADb</a> case 01.</p>
           </div>
-          <p class="scope-caption">
-            A procedural model, generated in the browser rather than reconstructed from a
-            scan — it stands in for the patient-specific mesh that stage one produces. The
-            surface is drawn semi-transparent so the portal and hepatic trees inside remain
-            visible.
-          </p>
+          <div>
+            <div class="couinaud-panel-head"><p id="couinaud-selection" aria-live="polite">All eight segments</p><button id="couinaud-show-all" type="button" hidden disabled>Show all</button></div>
+            <ul class="seg-list" id="segList">
+              <li><button type="button" data-seg="I" data-segment-id="1" aria-pressed="false" disabled><span class="seg-swatch" style="background:#C9EEF5"></span><span class="seg-roman">I</span><span class="seg-name">Caudate</span></button></li>
+              <li><button type="button" data-seg="II" data-segment-id="2" aria-pressed="false" disabled><span class="seg-swatch" style="background:#B7E3C7"></span><span class="seg-roman">II</span><span class="seg-name">Left lateral superior</span></button></li>
+              <li><button type="button" data-seg="III" data-segment-id="3" aria-pressed="false" disabled><span class="seg-swatch" style="background:#4FA37A"></span><span class="seg-roman">III</span><span class="seg-name">Left lateral inferior</span></button></li>
+              <li><button type="button" data-seg="IV" data-segment-id="4" aria-pressed="false" disabled><span class="seg-swatch" style="background:#55B8D6"></span><span class="seg-roman">IV</span><span class="seg-name">Left medial (IVa + IVb)</span></button></li>
+              <li><button type="button" data-seg="V" data-segment-id="5" aria-pressed="false" disabled><span class="seg-swatch" style="background:#7FD4B8"></span><span class="seg-roman">V</span><span class="seg-name">Right anterior inferior</span></button></li>
+              <li><button type="button" data-seg="VI" data-segment-id="6" aria-pressed="false" disabled><span class="seg-swatch" style="background:#3E8F6E"></span><span class="seg-roman">VI</span><span class="seg-name">Right posterior inferior</span></button></li>
+              <li><button type="button" data-seg="VII" data-segment-id="7" aria-pressed="false" disabled><span class="seg-swatch" style="background:#8FD9C8"></span><span class="seg-roman">VII</span><span class="seg-name">Right posterior superior</span></button></li>
+              <li><button type="button" data-seg="VIII" data-segment-id="8" aria-pressed="false" disabled><span class="seg-swatch" style="background:#1F6F8B"></span><span class="seg-roman">VIII</span><span class="seg-name">Right anterior superior</span></button></li>
+            </ul>
+            <p class="seg-note">Select a segment to isolate it in the model.<br>Segment I lies posteriorly — rotate to see it.<br>Segment IV is combined in this dataset.</p>
+            <div class="couinaud-panel-footer">
+              <details class="couinaud-keyboard"><summary>Keyboard controls</summary><p id="couinaud-keyboard-help">Focus the model, then use arrow keys to rotate, + / − to zoom, and R to reset. Press Escape to leave touch rotation. Tab moves to the next control.</p></details>
+              <button id="couinaud-reset" type="button" disabled>Reset view <span aria-hidden="true">↺</span></button>
+            </div>
+          </div>
         </div>
-
-        <div>
-          <ul class="seg-list" id="segList">
-            <li><button type="button" data-seg="I" aria-pressed="false"><span class="seg-swatch" style="background:#C9EEF5"></span><span class="seg-roman">I</span><span class="seg-name">Caudate</span></button></li>
-            <li><button type="button" data-seg="II" aria-pressed="false"><span class="seg-swatch" style="background:#B7E3C7"></span><span class="seg-roman">II</span><span class="seg-name">Left lateral superior</span></button></li>
-            <li><button type="button" data-seg="III" aria-pressed="false"><span class="seg-swatch" style="background:#4FA37A"></span><span class="seg-roman">III</span><span class="seg-name">Left lateral inferior</span></button></li>
-            <li><button type="button" data-seg="IVa" aria-pressed="false"><span class="seg-swatch" style="background:#55B8D6"></span><span class="seg-roman">IVa</span><span class="seg-name">Left medial superior</span></button></li>
-            <li><button type="button" data-seg="IVb" aria-pressed="false"><span class="seg-swatch" style="background:#2B7FB8"></span><span class="seg-roman">IVb</span><span class="seg-name">Left medial inferior</span></button></li>
-            <li><button type="button" data-seg="V" aria-pressed="false"><span class="seg-swatch" style="background:#7FD4B8"></span><span class="seg-roman">V</span><span class="seg-name">Right anterior inferior</span></button></li>
-            <li><button type="button" data-seg="VI" aria-pressed="false"><span class="seg-swatch" style="background:#3E8F6E"></span><span class="seg-roman">VI</span><span class="seg-name">Right posterior inferior</span></button></li>
-            <li><button type="button" data-seg="VII" aria-pressed="false"><span class="seg-swatch" style="background:#8FD9C8"></span><span class="seg-roman">VII</span><span class="seg-name">Right posterior superior</span></button></li>
-            <li><button type="button" data-seg="VIII" aria-pressed="false"><span class="seg-swatch" style="background:#1F6F8B"></span><span class="seg-roman">VIII</span><span class="seg-name">Right anterior superior</span></button></li>
-          </ul>
-          <p class="seg-note">
-            Select a segment to isolate it in the model.<br>
-            Segment I lies posteriorly — rotate to see it.
-          </p>
-        </div>
-      </div>
       </details>
     </div>
   </section>
@@ -1211,353 +1218,6 @@ html{scroll-behavior:smooth}
 </footer>
 
 
-<script>
-/* ============================================================
-   Procedural liver model.
 
-   A unit sphere is deformed into a hepatic shape, then each
-   quad is assigned a Couinaud segment using the same anatomical
-   planes the page describes: the three hepatic venous planes
-   divide the organ left to right, the portal plane divides
-   superior from inferior, and the caudate lobe is carved out
-   posteriorly. Rendered with a depth-sorted painter's pass so
-   the vessel trees show through the translucent surface.
-
-   Axes: +x toward the patient's left, +y superior, +z anterior.
-   ============================================================ */
-(function () {
-  var cv = document.getElementById('liver3d');
-  if (!cv || !cv.getContext) return;
-  var ctx = cv.getContext('2d');
-  var stage = document.getElementById('stage');
-  var compact = window.innerWidth < 760;
-
-  var NA = compact ? 26 : 34;   // rings along the long axis
-  var NB = compact ? 36 : 48;   // points around each ring
-
-  /* ---------- helpers ---------- */
-  function clamp(t, lo, hi) { return t < lo ? lo : t > hi ? hi : t; }
-  function smooth(t) { t = clamp(t, 0, 1); return t * t * (3 - 2 * t); }
-  function spow(v, e) { return (v < 0 ? -1 : 1) * Math.pow(Math.abs(v), e); }
-
-  // vertical offset of the organ's mid-plane: the left lobe rides higher
-  function lift(X) {
-    var u = (X + 1) / 2;
-    return -0.02 + 0.30 * smooth((u - 0.46) / 0.50);
-  }
-
-  function surface(a, b) {
-    var X = -Math.cos(a);
-    var r = Math.pow(Math.sin(a), 0.70);   // blunt lobe tips
-    var u = (X + 1) / 2;
-
-    // superelliptic cross-section: the liver is wedge-like, not round
-    var cb = spow(Math.cos(b), 0.78), sb = spow(Math.sin(b), 0.78);
-
-    var hy = 0.78 - 0.40 * smooth((u - 0.42) / 0.58);
-    var hz = 0.64 - 0.38 * smooth((u - 0.38) / 0.62);
-
-    var Y = r * cb * hy, Z = r * sb * hz;
-
-    if (Y < 0) Y *= 0.84;                  // flatter visceral surface
-    Y += lift(X);
-
-    // sharp antero-inferior margin
-    Z *= 1 - 0.45 * clamp(-Y / 0.55, 0, 1) * clamp(Z / 0.55, 0, 1);
-
-    // the left tip thins to a blunt edge
-    var tip = smooth((X - 0.72) / 0.28);
-    Z *= 1 - 0.40 * tip;
-    Y *= 1 - 0.18 * tip;
-
-    // umbilical notch at the falciform, gallbladder fossa right of midline
-    Y += 0.11 * Math.exp(-Math.pow((X - 0.22) / 0.12, 2)) * clamp(-Y / 0.42, 0, 1);
-    Y += 0.05 * Math.exp(-Math.pow((X + 0.06) / 0.10, 2)) *
-         clamp(-Y / 0.5, 0, 1) * clamp(Z / 0.4, 0, 1);
-
-    return [X, Y, Z];
-  }
-
-  /* ---------- Couinaud assignment ---------- */
-  // planes: right hepatic vein, middle hepatic vein (Cantlie), left hepatic vein (falciform)
-  var P_RHV = -0.48, P_MHV = 0.02, P_LHV = 0.28;
-
-  function segmentOf(X, Y, Z) {
-    if (X > -0.06 && X < 0.26 && Z < -0.32 && Y > -0.22 && Y < 0.36) return 'I';
-    var sup = Y > lift(X);
-    if (X < P_RHV) return sup ? 'VII' : 'VI';
-    if (X < P_MHV) return sup ? 'VIII' : 'V';
-    if (X < P_LHV) return sup ? 'IVa' : 'IVb';
-    return sup ? 'II' : 'III';
-  }
-
-  // Adjacent segments are given contrasting hues so the boundaries read
-  // at a glance. Amber is reserved for the lesion and the active selection.
-  var COLOUR = {
-    'I':   [201, 238, 245],
-    'II':  [183, 227, 199], 'III': [ 79, 163, 122],
-    'IVa': [ 85, 184, 214], 'IVb': [ 43, 127, 184],
-    'V':   [127, 212, 184], 'VI':  [ 62, 143, 110],
-    'VII': [143, 217, 200], 'VIII':[ 31, 111, 139]
-  };
-  var HILITE = [224, 163, 60];
-  var PLAIN  = [150, 92, 76];
-
-  /* ---------- build geometry once ---------- */
-  var verts = [], quads = [];
-  for (var i = 0; i < NA; i++) {
-    var a = 0.001 + (Math.PI - 0.002) * i / (NA - 1);
-    for (var j = 0; j < NB; j++) {
-      verts.push(surface(a, 2 * Math.PI * j / NB));
-    }
-  }
-  for (i = 0; i < NA - 1; i++) {
-    for (j = 0; j < NB; j++) {
-      var j2 = (j + 1) % NB;
-      var q = [i * NB + j, i * NB + j2, (i + 1) * NB + j2, (i + 1) * NB + j];
-      var cx = 0, cy = 0, cz = 0;
-      for (var k = 0; k < 4; k++) { cx += verts[q[k]][0]; cy += verts[q[k]][1]; cz += verts[q[k]][2]; }
-      // face normal from the diagonals
-      var A = verts[q[2]], B = verts[q[0]], C = verts[q[3]], D = verts[q[1]];
-      var ux = A[0] - B[0], uy = A[1] - B[1], uz = A[2] - B[2];
-      var wx = C[0] - D[0], wy = C[1] - D[1], wz = C[2] - D[2];
-      var nx = uy * wz - uz * wy, ny = uz * wx - ux * wz, nz = ux * wy - uy * wx;
-      var m = Math.hypot(nx, ny, nz) || 1;
-      quads.push({ v: q, seg: segmentOf(cx / 4, cy / 4, cz / 4),
-                   n: [nx / m, ny / m, nz / m] });
-    }
-  }
-
-  /* ---------- vessels, as 3D polylines ---------- */
-  var PORTAL = [
-    [[0.10,-0.34,-0.30],[0.06,-0.22,-0.20],[0.02,-0.10,-0.10]],
-    [[0.02,-0.10,-0.10],[-0.14,-0.08,-0.11],[-0.30,-0.05,-0.12]],
-    [[-0.30,-0.05,-0.12],[-0.32, 0.10,-0.02],[-0.34, 0.26, 0.08]],
-    [[-0.30,-0.05,-0.12],[-0.30,-0.18,-0.04],[-0.30,-0.30, 0.02]],
-    [[-0.30,-0.05,-0.12],[-0.46,-0.04,-0.16],[-0.62,-0.02,-0.18]],
-    [[-0.62,-0.02,-0.18],[-0.66, 0.12,-0.15],[-0.70, 0.26,-0.11]],
-    [[-0.62,-0.02,-0.18],[-0.67,-0.14,-0.14],[-0.72,-0.26,-0.10]],
-    [[0.02,-0.10,-0.10],[0.16,-0.05,-0.08],[0.30, 0.02,-0.06]],
-    [[0.30, 0.02,-0.06],[0.42, 0.10,-0.02],[0.54, 0.17, 0.02]],
-    [[0.30, 0.02,-0.06],[0.44,-0.04, 0.00],[0.58,-0.09, 0.05]],
-    [[0.14,-0.07,-0.09],[0.15, 0.06,-0.02],[0.16, 0.20, 0.05]],
-    [[0.12,-0.09,-0.08],[0.13,-0.14,-0.01],[0.14,-0.20, 0.06]]
-  ];
-  var HEPATIC = [
-    [[0.00, 0.56,-0.30],[-0.26, 0.36,-0.20],[-0.48, 0.12,-0.10],[-0.62,-0.06,-0.02]],
-    [[0.00, 0.56,-0.30],[0.01, 0.30,-0.12],[0.01, 0.04, 0.00],[0.00,-0.20, 0.05]],
-    [[0.00, 0.56,-0.30],[0.20, 0.38,-0.18],[0.38, 0.23,-0.08]],
-    [[-0.30, 0.30,-0.16],[-0.32, 0.42,-0.10],[-0.34, 0.52,-0.04]],
-    [[0.01, 0.18,-0.05],[-0.12, 0.24, 0.02],[-0.24, 0.28, 0.08]]
-  ];
-  var TUMOUR = { c: [-0.30, 0.30, 0.10], r: 0.145, seg: 'VIII' };
-
-  function polyToSegments(list, colour, width) {
-    var out = [];
-    list.forEach(function (path) {
-      for (var s = 0; s < path.length - 1; s++) {
-        out.push({ a: path[s], b: path[s + 1], colour: colour,
-                   w: width * (1 - 0.45 * s / Math.max(1, path.length - 1)) });
-      }
-    });
-    return out;
-  }
-  var VESSELS = polyToSegments(PORTAL, '#3FD3BE', 7)
-                  .concat(polyToSegments(HEPATIC, '#9BE8F5', 5.5));
-
-  /* ---------- state ---------- */
-  var yaw = -0.35, pitch = -0.18, mode = 'segments', focus = null;
-  var dragging = false, lastX = 0, lastY = 0;
-  var W = 0, H = 0, dpr = 1;
-
-  function resize() {
-    var r = stage.getBoundingClientRect();
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    W = r.width; H = r.height;
-    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  }
-
-  var LIGHT = (function () { var l = [-0.4, 0.62, 0.68], m = Math.hypot(l[0], l[1], l[2]);
-    return [l[0] / m, l[1] / m, l[2] / m]; })();
-
-  function draw() {
-    if (!W) resize();
-    ctx.clearRect(0, 0, W, H);
-
-    var cy = Math.cos(yaw), sy = Math.sin(yaw);
-    var cp = Math.cos(pitch), sp = Math.sin(pitch);
-    var scale = Math.min(W, H) * 0.46, ox = W / 2, oy = H / 2;
-    var FOC = 3.4;
-
-    function project(p) {
-      var x = p[0] * cy + p[2] * sy;
-      var z = -p[0] * sy + p[2] * cy;
-      var y = p[1] * cp - z * sp;
-      z = p[1] * sp + z * cp;
-      var k = FOC / (FOC - z);
-      return [ox + x * scale * k, oy - y * scale * k, z];
-    }
-
-    function rotateVec(n) {
-      var x = n[0] * cy + n[2] * sy;
-      var z = -n[0] * sy + n[2] * cy;
-      var y = n[1] * cp - z * sp;
-      return [x, y, n[1] * sp + z * cp];
-    }
-
-    var pv = new Array(verts.length);
-    for (var i = 0; i < verts.length; i++) pv[i] = project(verts[i]);
-
-    var items = [];
-
-    for (i = 0; i < quads.length; i++) {
-      var q = quads[i], v = q.v;
-      var p0 = pv[v[0]], p1 = pv[v[1]], p2 = pv[v[2]], p3 = pv[v[3]];
-      var d = (p0[2] + p1[2] + p2[2] + p3[2]) / 4;
-      // screen-space winding tells us which way the face points
-      var area = (p1[0] - p0[0]) * (p2[1] - p0[1]) - (p1[1] - p0[1]) * (p2[0] - p0[0]);
-      items.push({ d: d, kind: 'q', q: q, p: [p0, p1, p2, p3], front: area < 0,
-                   rn: rotateVec(q.n) });
-    }
-
-    if (mode !== 'surface') {
-      for (i = 0; i < VESSELS.length; i++) {
-        var s = VESSELS[i], pa = project(s.a), pb = project(s.b);
-        items.push({ d: (pa[2] + pb[2]) / 2 + 0.004, kind: 'v', pa: pa, pb: pb, s: s });
-      }
-      var pt = project(TUMOUR.c);
-      items.push({ d: pt[2] + 0.005, kind: 't', p: pt,
-                   r: TUMOUR.r * scale * (FOC / (FOC - pt[2])) });
-    }
-
-    items.sort(function (m, n) { return m.d - n.d; });
-
-    for (i = 0; i < items.length; i++) {
-      var it = items[i];
-
-      if (it.kind === 'q') {
-        var seg = it.q.seg;
-        var dim = focus && focus !== seg;
-        var base = mode === 'surface' ? PLAIN : (focus === seg ? HILITE : COLOUR[seg]);
-
-        // flat shading from the face normal, flipped for faces seen from behind
-        var n = it.front ? 1 : -1;
-        var ndl = (it.rn[0] * LIGHT[0] + it.rn[1] * LIGHT[1] + it.rn[2] * LIGHT[2]) * n;
-        var shade = 0.46 + 0.54 * clamp(ndl, 0, 1);
-
-        if (mode === 'mesh') {
-          ctx.beginPath();
-          ctx.moveTo(it.p[0][0], it.p[0][1]);
-          for (var k = 1; k < 4; k++) ctx.lineTo(it.p[k][0], it.p[k][1]);
-          ctx.closePath();
-          ctx.strokeStyle = 'rgba(63,211,190,' +
-            (it.front ? (dim ? 0.10 : 0.42) : (dim ? 0.04 : 0.13)) + ')';
-          ctx.lineWidth = 0.7;
-          ctx.stroke();
-          continue;
-        }
-
-        var alpha = it.front ? (mode === 'surface' ? 1 : 0.62) : 0.95;
-        if (dim) alpha *= 0.22;
-
-        // The far wall is pushed towards the background so it reads as the
-        // inside of the organ; only the near surface carries segment colour.
-        var rr = base[0], gg = base[1], bb = base[2];
-        if (!it.front && mode !== 'surface') {
-          rr = rr * 0.20 + 16; gg = gg * 0.20 + 30; bb = bb * 0.20 + 28;
-        }
-
-        ctx.beginPath();
-        ctx.moveTo(it.p[0][0], it.p[0][1]);
-        for (k = 1; k < 4; k++) ctx.lineTo(it.p[k][0], it.p[k][1]);
-        ctx.closePath();
-        ctx.fillStyle = 'rgba(' + Math.round(rr * shade) + ',' +
-          Math.round(gg * shade) + ',' + Math.round(bb * shade) + ',' + alpha + ')';
-        ctx.fill();
-
-      } else if (it.kind === 'v') {
-        ctx.beginPath();
-        ctx.moveTo(it.pa[0], it.pa[1]);
-        ctx.lineTo(it.pb[0], it.pb[1]);
-        ctx.strokeStyle = it.s.colour;
-        ctx.globalAlpha = focus ? 0.35 : 0.85;
-        ctx.lineWidth = it.s.w * (scale / 260);
-        ctx.lineCap = 'round';
-        ctx.stroke();
-        ctx.globalAlpha = 1;
-
-      } else {
-        ctx.beginPath();
-        ctx.arc(it.p[0], it.p[1], it.r, 0, 2 * Math.PI);
-        ctx.fillStyle = 'rgba(224,163,60,' +
-          (focus && focus !== TUMOUR.seg ? 0.2 : 0.72) + ')';
-        ctx.fill();
-        ctx.strokeStyle = 'rgba(224,163,60,.95)';
-        ctx.lineWidth = 1.4;
-        ctx.stroke();
-      }
-    }
-  }
-
-  var modelVisible = false;
-  var modelObserver = new IntersectionObserver(function(entries) {
-    modelVisible = entries[0].isIntersecting;
-  });
-  modelObserver.observe(stage);
-  function frame() {
-    if (modelVisible && !document.hidden) draw();
-    requestAnimationFrame(frame);
-  }
-
-  /* ---------- interaction ---------- */
-  stage.addEventListener('pointerdown', function (e) {
-    if (e.target.closest('button') || !e.isPrimary || e.button !== 0) return;
-    dragging = true; lastX = e.clientX; lastY = e.clientY;
-    stage.setPointerCapture(e.pointerId);
-  });
-  stage.addEventListener('pointermove', function (e) {
-    if (!dragging) return;
-    yaw += (e.clientX - lastX) * 0.008;
-    pitch = clamp(pitch + (e.clientY - lastY) * 0.006, -1.1, 1.1);
-    lastX = e.clientX; lastY = e.clientY;
-  });
-  ['pointerup', 'pointercancel'].forEach(function (t) {
-    stage.addEventListener(t, function () { dragging = false; });
-  });
-
-  document.querySelectorAll('.model-modes button').forEach(function (b) {
-    b.addEventListener('click', function () {
-      mode = b.dataset.mode;
-      document.querySelectorAll('.model-modes button').forEach(function (o) {
-        o.setAttribute('aria-pressed', String(o === b));
-      });
-    });
-  });
-
-  var segButtons = document.querySelectorAll('#segList button');
-  segButtons.forEach(function (b) {
-    b.addEventListener('click', function () {
-      focus = focus === b.dataset.seg ? null : b.dataset.seg;
-      segButtons.forEach(function (o) {
-        o.setAttribute('aria-pressed', String(o.dataset.seg === focus));
-      });
-    });
-  });
-
-  cv.addEventListener('keydown', function(e) {
-    if (!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)) return;
-    e.preventDefault();
-    if(e.key === 'ArrowLeft') yaw -= 0.12;
-    if(e.key === 'ArrowRight') yaw += 0.12;
-    if(e.key === 'ArrowUp') pitch = clamp(pitch - 0.12, -1.1, 1.1);
-    if(e.key === 'ArrowDown') pitch = clamp(pitch + 0.12, -1.1, 1.1);
-  });
-  document.getElementById('anatomy-explainer').addEventListener('toggle', resize);
-  window.addEventListener('resize', resize);
-  resize();
-  requestAnimationFrame(frame);
-})();
-</script>
 </body>
 </html>

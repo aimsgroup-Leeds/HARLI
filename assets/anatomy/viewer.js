@@ -25,29 +25,30 @@
   const viewLabel = byID('current-view');
   const presetButtons = [...root.querySelectorAll('[data-anatomy-view]')];
   const layerInputs = [...root.querySelectorAll('[data-anatomy-layer]')];
-  const scriptLoads = new Map();
+  const scriptLoads = window.__harliViewerLibraryLoads || (window.__harliViewerLibraryLoads = new Map());
   let canvas = byID('canvas');
   let runtime = null;
   let pending = false;
   let inView = false;
 
   function loadScript(name) {
-    if (scriptLoads.has(name)) return scriptLoads.get(name);
+    const url = new URL(name, baseURL).href;
+    if (scriptLoads.has(url)) return scriptLoads.get(url);
     const promise = new Promise((resolve, reject) => {
       const element = document.createElement('script');
       const timer = window.setTimeout(() => fail(), 20000);
       function fail() {
         window.clearTimeout(timer);
         element.remove();
-        scriptLoads.delete(name);
+        scriptLoads.delete(url);
         reject(new Error('A local viewer library could not be loaded.'));
       }
-      element.src = new URL(name, baseURL).href;
+      element.src = url;
       element.onload = () => { window.clearTimeout(timer); resolve(); };
       element.onerror = fail;
       document.head.appendChild(element);
     });
-    scriptLoads.set(name, promise);
+    scriptLoads.set(url, promise);
     return promise;
   }
 

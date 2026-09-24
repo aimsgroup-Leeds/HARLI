@@ -1,0 +1,56 @@
+{
+  "I": {
+    "source_faces": 43916,
+    "display_faces": 14000,
+    "watertight": true,
+    "voxel_count": 78099
+  },
+  "II": {
+    "source_faces": 118576,
+    "display_faces": 7000,
+    "watertight": true,
+    "voxel_count": 309093
+  },
+  "III": {
+    "source_faces": 59236,
+    "display_faces": 7000,
+    "watertight": true,
+    "voxel_count": 126396
+  },
+  "IV": {
+    "source_faces": 100278,
+    "display_faces": 7000,
+    "watertight": true,
+    "voxel_count": 319017
+  },
+  "V": {
+    "source_faces": 91034,
+    "display_faces": 7000,
+    "watertight": true,
+    "voxel_count": 340760
+  },
+  "VI": {
+    "source_faces": 90204,
+    "display_faces": 7000,
+    "watertight": true,
+    "voxel_count": 288289
+  },
+  "VII": {
+    "source_faces": 144474,
+    "display_faces": 7000,
+    "watertight": true,
+    "voxel_count": 752044
+  },
+  "VIII": {
+    "source_faces": 127524,
+    "display_faces": 7000,
+    "watertight": true,
+    "voxel_count": 602722
+  },
+  "surface": {
+    "source_faces": 458646,
+    "display_faces": 28000,
+    "watertight": true,
+    "voxel_count": 2816420
+  }
+}

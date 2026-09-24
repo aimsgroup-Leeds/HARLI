@@ -1,0 +1,66 @@
+/* Styles are scoped to the Couinaud explainer; the prepared anatomy viewer is independent. */
+#anatomy-explainer .model{grid-template-columns:minmax(0,1.45fr) minmax(280px,1fr);gap:28px;align-items:start}
+#anatomy-explainer .model-stage{height:540px;aspect-ratio:auto;background:#0b1b20;touch-action:pan-y;cursor:default;isolation:isolate}
+#anatomy-explainer .model-stage canvas,#anatomy-explainer .couinaud-fallback{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+#anatomy-explainer .model-stage canvas{touch-action:pan-y;cursor:grab;outline-offset:-5px}
+#anatomy-explainer .model-stage canvas:active{cursor:grabbing}
+#anatomy-explainer .model-stage canvas.is-touch-active{touch-action:none}
+#anatomy-explainer [hidden]{display:none!important}
+#anatomy-explainer button:focus-visible,#anatomy-explainer canvas:focus-visible{outline:2px solid #69b99b;outline-offset:3px}
+#anatomy-explainer canvas:focus-visible{outline-offset:-5px}
+.couinaud-stage-heading{position:absolute;z-index:1;top:21px;left:22px;right:22px;display:flex;align-items:center;gap:9px;pointer-events:none;font:10px var(--f-mono,monospace);color:#c2d2cb;letter-spacing:.035em}
+.couinaud-stage-heading::before{content:"";width:5px;height:5px;background:#b4c6bc;border-radius:50%}
+[data-couinaud-state=ready] .couinaud-stage-heading::before{background:#a8e1bc;box-shadow:0 0 0 4px #a8e1bc10}
+#anatomy-explainer .model-modes{top:49px;left:22px;right:auto;z-index:2;gap:5px}
+#anatomy-explainer .model-modes button{min-height:35px;padding:7px 10px;font-size:9px;letter-spacing:.07em;color:#d1dfd7;background:#1b302ecc;border-color:#5f7b6d80;border-radius:3px}
+#anatomy-explainer .model-modes button[aria-pressed=true]{background:#bbdfca;border-color:#bbdfca;color:#1d3930}
+#anatomy-explainer .model-modes button:hover{background:#335449;color:#f2f8f2}
+.couinaud-loading{position:absolute;z-index:3;bottom:20px;left:20px;right:20px;padding:12px 15px;text-align:center;border:1px solid #81998d50;background:#0b1b20f2;border-radius:4px}
+.couinaud-loading p{font-size:11px;line-height:1.6;color:#d4e2d9;margin:0}
+.couinaud-loading button{margin-top:10px;min-height:40px;padding:8px 13px;border:0;border-radius:3px;background:#bbdfca;color:#1d3930;font:11px var(--f-display,sans-serif);cursor:pointer}
+.couinaud-footer{position:absolute;z-index:2;bottom:20px;left:22px;right:22px;display:flex;align-items:center;gap:12px;pointer-events:none}
+.couinaud-footer p{font:10px var(--f-display,sans-serif);color:#c4d5ca;margin:0;line-height:1.65}
+.couinaud-touch-help{display:none}
+.couinaud-zoom{display:flex;gap:6px;margin-left:auto;pointer-events:auto}
+.couinaud-zoom button{display:grid;place-items:center;width:38px;height:38px;font:22px var(--f-display,sans-serif);line-height:1;font-weight:300;color:#dfebe3;background:#1b302ee8;border:1px solid #7b978680;border-radius:3px;cursor:pointer}
+.couinaud-zoom button:hover{background:#335449}
+#couinaud-touch{display:none;pointer-events:auto;min-height:40px;padding:8px 11px;border:1px solid #8aa89580;border-radius:3px;background:#1b302ef2;color:#dfebe3;font:10px var(--f-display,sans-serif);cursor:pointer}
+.couinaud-has-touch #couinaud-touch{display:block}
+.couinaud-has-touch .couinaud-footer{flex-wrap:wrap;gap:8px}
+.couinaud-has-touch .couinaud-footer p{width:100%}
+.couinaud-has-touch .couinaud-desktop-help{display:none}
+.couinaud-has-touch .couinaud-touch-help{display:inline}
+.couinaud-panel-head{min-height:42px;display:flex;align-items:start;justify-content:space-between;gap:10px}
+.couinaud-panel-head p{font:10px var(--f-mono,monospace);color:#52695d;line-height:1.6;margin:0 0 14px}
+.couinaud-panel-head button{flex-shrink:0;padding:0;min-height:22px;font:10px var(--f-display,sans-serif);color:#2a5945;border:0;background:none;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+#anatomy-explainer .seg-list button{grid-template-columns:20px 37px 1fr;min-height:49px;gap:8px;padding:10px 7px;border-radius:2px}
+#anatomy-explainer .seg-list button:hover,#anatomy-explainer .seg-list button[aria-pressed=true]{background:#e5ecdf}
+#anatomy-explainer .seg-list button[aria-pressed=true]{box-shadow:inset 3px 0 0 #456d58}
+#anatomy-explainer .seg-name{font-size:12px;line-height:1.5}
+#anatomy-explainer .seg-roman{font-size:12px}
+#anatomy-explainer .seg-swatch{width:11px;height:11px;box-shadow:inset 0 0 0 1px #254b3430}
+#anatomy-explainer .seg-note{font:10px var(--f-display,sans-serif);color:#586d60;line-height:1.8;text-transform:none;letter-spacing:0;margin:14px 0 0}
+.couinaud-panel-footer{display:flex;align-items:start;gap:15px;justify-content:space-between;margin-top:14px;padding-top:12px;border-top:1px solid var(--rule)}
+#couinaud-reset{border:0;padding:0;background:none;min-height:30px;font:10px var(--f-display,sans-serif);color:#2a5945;cursor:pointer;white-space:nowrap}
+#couinaud-reset span{font-size:17px;padding-left:7px}
+#anatomy-explainer .couinaud-keyboard{color:#586d60;max-width:245px}
+#anatomy-explainer .couinaud-keyboard summary{padding:7px 0;font-size:10px;font-weight:400;line-height:1.6}
+.couinaud-keyboard p{font:10px var(--f-display,sans-serif);line-height:1.7;margin:3px 0 0}
+#anatomy-explainer .couinaud-caption{font-size:11px;line-height:1.7;color:#52665a;margin:14px 0 0;max-width:72ch}
+.couinaud-caption a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px}
+#anatomy-explainer button:disabled{cursor:default;opacity:.45}
+@media(max-width:1000px){#anatomy-explainer .model{grid-template-columns:minmax(0,1.2fr) minmax(250px,1fr);gap:22px}}
+@media(max-width:760px){
+  #anatomy-explainer .model{grid-template-columns:1fr;gap:25px}
+  #anatomy-explainer .model-stage{height:430px}
+  .couinaud-stage-heading{top:19px;left:18px;right:18px;font-size:9px}
+  #anatomy-explainer .model-modes{left:18px;top:46px}
+  .couinaud-footer{left:18px;right:18px;bottom:17px}
+  #anatomy-explainer .seg-list button{min-height:47px;grid-template-columns:20px 40px 1fr;padding:9px 7px}
+  #anatomy-explainer .seg-name{font-size:12px}
+  .couinaud-panel-head{min-height:31px}
+  .couinaud-panel-head p{margin-bottom:10px}
+  #anatomy-explainer .couinaud-caption{font-size:10px}
+  .couinaud-panel-footer{margin-top:12px}
+}
+@media(max-width:380px){#anatomy-explainer .model-stage{height:400px}.couinaud-zoom button{width:35px;height:37px}.couinaud-footer{gap:7px}}
